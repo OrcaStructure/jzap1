@@ -27,4 +27,7 @@ func _process(delta: float) -> void:
 			last_perp_vector = perp_vector
 			occupying_parcel.position += spin_velocity * delta * perp_vector
 		else:
-			occupying_parcel.position += last_perp_vector * spin_velocity * delta
+			occupied = false
+			occupying_parcel.parcel_mode = "flung"
+			occupying_parcel.flung_direction = last_perp_vector * spin_velocity
+			
