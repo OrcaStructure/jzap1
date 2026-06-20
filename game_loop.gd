@@ -13,15 +13,15 @@ func _ready() -> void:
 	
 	conveyer1.start_pos = Vector2(0,500)
 	conveyer1.end_pos = Vector2(600,500)
-	conveyer2.start_pos = Vector2(600,340)
-	conveyer2.end_pos = Vector2(1000,340)
+	conveyer2.start_pos = Vector2(600,400)
+	conveyer2.end_pos = Vector2(1000,250)
 	add_child(conveyer1)
 	add_child(conveyer2)
 	add_child(spinner_instance2)
 	add_child(spinner_instance)	
 	add_child(parcel_instance)	
 	spinner_instance.position = Vector2(500,500)
-	spinner_instance2.position = Vector2(1000,340)
+	spinner_instance2.position = Vector2(1000,250)
 
 	parcel_instance.position = Vector2(50,500)
 
