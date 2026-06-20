@@ -10,7 +10,7 @@ script = ExtResource("1_7f3si")
 position = Vector2(6, -2)
 
 [node name="1-1-start" type="Node2D" parent="level design" unique_id=933644349]
-position = Vector2(75, 332)
+position = Vector2(129, 327)
 script = ExtResource("2_u3r3m")
 
 [node name="1-1-end" type="Node2D" parent="level design" unique_id=1990978222]
@@ -18,17 +18,33 @@ position = Vector2(300, 332)
 script = ExtResource("2_u3r3m")
 
 [node name="2-1-start" type="Node2D" parent="level design" unique_id=1331157922]
-position = Vector2(532, 332)
+position = Vector2(361, 110)
 script = ExtResource("2_u3r3m")
 
 [node name="2-1-end" type="Node2D" parent="level design" unique_id=838429872]
-position = Vector2(431, 471)
+position = Vector2(470, 60)
 script = ExtResource("2_u3r3m")
 
 [node name="2-2-start" type="Node2D" parent="level design" unique_id=1889622294]
-position = Vector2(532, 176)
+position = Vector2(370, 546)
 script = ExtResource("2_u3r3m")
 
 [node name="2-2-end" type="Node2D" parent="level design" unique_id=1281227953]
-position = Vector2(701, 177)
+position = Vector2(557, 596)
+script = ExtResource("2_u3r3m")
+
+[node name="3-1-start" type="Node2D" parent="level design" unique_id=470286406]
+position = Vector2(494, 415)
+script = ExtResource("2_u3r3m")
+
+[node name="3-1-end" type="Node2D" parent="level design" unique_id=935286195]
+position = Vector2(643, 420)
+script = ExtResource("2_u3r3m")
+
+[node name="3-2-start" type="Node2D" parent="level design" unique_id=395166524]
+position = Vector2(142, 548)
+script = ExtResource("2_u3r3m")
+
+[node name="3-2-end" type="Node2D" parent="level design" unique_id=2040240716]
+position = Vector2(117, 420)
 script = ExtResource("2_u3r3m")

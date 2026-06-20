@@ -10,7 +10,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	for body in get_overlapping_bodies():
-		if body is Parcel and body.parcel_mode != "on_spinner" and body.parcel_mode != "dragging" and !body.high_up and !conveyer.endpoint.occupied and body.parcel_mode != "destination":
+		if body is Parcel and body.parcel_mode != "on_spinner" and body.parcel_mode != "dragging" and !body.high_up and !conveyer.endpoint.occupied and body.parcel_mode != "destination" and body.parcel_mode != "flung":
 			body.parcel_mode = "conveyer"
-			body.conveyer_velocity = 200 * direction
+			body.conveyer_velocity = 100 * direction
 			

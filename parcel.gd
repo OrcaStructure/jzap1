@@ -5,6 +5,7 @@ var conveyer_velocity
 var parcel_mode = "static"
 var dragging
 var flung_direction
+var flung_destination
 var high_up = false
 var destination_node
 var flung_air_time = -1
@@ -62,24 +63,18 @@ func _physics_process(delta: float) -> void:
 				collider.consume_parcel(self)
 			
 	elif parcel_mode == "flung":
+		collision_shape.disabled = true
 		if is_off_screen() and bounced == false:
 			print('off screen')
-			flung_direction = - flung_direction
+			flung_destination = 2 * position - flung_destination
 			bounced = true
-		if flung_air_time < 0:
-			high_up = true
-			flung_air_time = randf_range(0.5,0.8)
 			
-		if flung_air_time < 0.4:
-			high_up = false
-			scale = Vector2(1.0,1.0)
-		else:
-			scale = Vector2(1.2,1.2)
-		if flung_air_time > 0:
-			flung_air_time -= delta
-		if flung_air_time < 0:
-			parcel_mode = "landed"
+		
+		if (position - flung_destination).length() < 10:
+			parcel_mode = "static"
+			collision_shape.disabled = false
 			bounced = false
+		flung_direction = 750 * (flung_destination - position).normalized()
 		var colllision_info = move_and_collide(flung_direction*delta)  
 	elif parcel_mode == "dragging":
 		position = get_global_mouse_position()
@@ -107,6 +102,6 @@ func _physics_process(delta: float) -> void:
 				scale = Vector2(1.0,1.0)
 				parcel_mode = "flung"
 				var random_angle = randf_range(0,2 * PI)
-				flung_direction = 50 * Vector2(cos(random_angle),sin(random_angle))
+				flung_destination = position + 200 * Vector2(cos(random_angle),sin(random_angle))
 			else:
 				parcel_mode = "done"

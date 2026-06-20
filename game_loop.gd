@@ -5,7 +5,7 @@ var parcel_scene
 var destination_scene
 var day = 2
 var sorters = []
-var total_parcels = 60
+var total_parcels = 30
 var spawned_parcels = 0
 var day_timer = 0 
 var parcels = []
@@ -23,7 +23,6 @@ func add_sorter(start_pos,end_pos,terminal,day):
 	add_child(conveyer)
 	sorters[-1]["conveyer"] = conveyer
 	sorters[-1]["day"] = day
-	sorters[-1]["start_pos"] = start_pos
 
 
 	if terminal:
@@ -43,6 +42,7 @@ func add_sorter(start_pos,end_pos,terminal,day):
 		add_child(spinner)
 		sorters[-1]["spinner"] = spinner
 		spinner.sorter = sorters[-1]
+	sorters[-1]["start_pos"] = conveyer.start_pos
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -88,8 +88,14 @@ func create_parcel():
 	parcel.position = sorters[0]["start_pos"]
 	add_child(parcel)
 	parcel.sorters = parcel_sorters
+
+func _draw():
+	draw_circle(sorters[-1]["start_pos"], 6.0, Color.RED)
+
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	queue_redraw()
 	day_timer += delta
 	if day_timer > 3* spawned_parcels and spawned_parcels < total_parcels:
 		create_parcel()

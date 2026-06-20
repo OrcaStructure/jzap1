@@ -22,7 +22,7 @@ func on_creation():
 		segment.conveyer = self
 		add_child(segment)
 	end_pos = start_pos + (count-1) * 200 * track_vector + 120 * track_vector
-
+	start_pos = start_pos - 100 * track_vector
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
