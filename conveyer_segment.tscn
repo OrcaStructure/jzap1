@@ -16,16 +16,18 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slxjl"]
-size = Vector2(161, 100)
+size = Vector2(200, 23)
 
 [node name="conveyer_segment" type="Area2D" unique_id=2034310328]
+position = Vector2(0, 1)
 script = ExtResource("1_slxjl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1902306842]
-position = Vector2(30.000008, -2.2499971)
+position = Vector2(-1, -0.124996185)
+scale = Vector2(1, 0.25750005)
 sprite_frames = SubResource("SpriteFrames_bp7du")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1736346427]
-position = Vector2(30.5, -3)
+position = Vector2(-3.8146973e-06, 0)
 shape = SubResource("RectangleShape2D_slxjl")
 script = ExtResource("2_slxjl")

@@ -1,6 +1,34 @@
 [gd_scene format=3 uid="uid://citm6abnlexpp"]
 
 [ext_resource type="Script" uid="uid://dknqnqax8bnj8" path="res://game_loop.gd" id="1_7f3si"]
+[ext_resource type="Script" uid="uid://bib07vhyqnuyn" path="res://sorter_level.gd" id="2_u3r3m"]
 
 [node name="game_loop" type="Node2D" unique_id=213208169]
 script = ExtResource("1_7f3si")
+
+[node name="level design" type="Node2D" parent="." unique_id=47303182]
+position = Vector2(6, -2)
+
+[node name="1-1-start" type="Node2D" parent="level design" unique_id=933644349]
+position = Vector2(75, 332)
+script = ExtResource("2_u3r3m")
+
+[node name="1-1-end" type="Node2D" parent="level design" unique_id=1990978222]
+position = Vector2(300, 332)
+script = ExtResource("2_u3r3m")
+
+[node name="2-1-start" type="Node2D" parent="level design" unique_id=1331157922]
+position = Vector2(532, 332)
+script = ExtResource("2_u3r3m")
+
+[node name="2-1-end" type="Node2D" parent="level design" unique_id=838429872]
+position = Vector2(431, 471)
+script = ExtResource("2_u3r3m")
+
+[node name="2-2-start" type="Node2D" parent="level design" unique_id=1889622294]
+position = Vector2(532, 176)
+script = ExtResource("2_u3r3m")
+
+[node name="2-2-end" type="Node2D" parent="level design" unique_id=1281227953]
+position = Vector2(701, 177)
+script = ExtResource("2_u3r3m")

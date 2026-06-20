@@ -4,16 +4,18 @@
 [ext_resource type="Script" uid="uid://b8ws05ftimwik" path="res://parcel.gd" id="1_u4l27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4l27"]
-size = Vector2(64, 64)
+size = Vector2(32, 30)
 
 [node name="parcel" type="CharacterBody2D" unique_id=2046342413]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_u4l27")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1166736743]
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_u4l27")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=89020379]
 position = Vector2(-2.2053719e-06, -2.2053719e-06)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_3rys6")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=93770245]

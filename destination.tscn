@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ev8dm5vwti7o"]
+
+[ext_resource type="Script" uid="uid://dcqg73wkjgsl7" path="res://destination.gd" id="1_ysfre"]
+[ext_resource type="Texture2D" uid="uid://b81qjrmybif6m" path="res://hole.png" id="2_lgetq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfre"]
+size = Vector2(51, 28)
+
+[node name="destination" type="StaticBody2D" unique_id=1297411511]
+script = ExtResource("1_ysfre")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=839542902]
+position = Vector2(14.5, 7)
+shape = SubResource("RectangleShape2D_ysfre")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=615911715]
+position = Vector2(13.906248, 7.03125)
+scale = Vector2(0.16729166, 0.1596875)
+texture = ExtResource("2_lgetq")
