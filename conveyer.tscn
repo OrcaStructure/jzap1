@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://c7wn8ysyu1gsk"]
 
+[ext_resource type="Script" uid="uid://drauvt6ch17sh" path="res://conveyer.gd" id="1_n0ytx"]
+
 [node name="conveyer" type="Node2D" unique_id=1966250170]
+script = ExtResource("1_n0ytx")

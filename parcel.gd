@@ -1,7 +1,8 @@
+class_name Parcel
 extends CharacterBody2D
 
-
-var parcel_mode = "conveyer"
+var conveyer_velocity
+var parcel_mode = "static"
 var flung_direction
 var flung_air_time = -1
 func _ready() -> void:
@@ -9,14 +10,14 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if parcel_mode == "conveyer":
-		var collision_info = move_and_collide(Vector2(200,0)*delta)
+		var collision_info = move_and_collide(conveyer_velocity*delta)
 		if collision_info:
 			parcel_mode = "on_spinner"
 			var spinner = collision_info.get_collider()
 			spinner.spin_parcel(self)
 	elif parcel_mode == "flung":
 		if flung_air_time < 0:
-			flung_air_time = randf_range(0.2,0.8)
+			flung_air_time = randf_range(0.5,0.8)
 		if flung_air_time > 0:
 			flung_air_time -= delta
 		if flung_air_time < 0:

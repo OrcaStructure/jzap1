@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dlpfo5khes2os"]
+
+[ext_resource type="Script" uid="uid://hjj7q4266nk2" path="res://conveyer_segment.gd" id="1_slxjl"]
+[ext_resource type="Texture2D" uid="uid://c6uojfh2a8qo" path="res://track2.png" id="2_b3uaf"]
+[ext_resource type="Script" uid="uid://b73xmd25qremd" path="res://collision_shape_2d.gd" id="2_slxjl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bp7du"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b3uaf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slxjl"]
+size = Vector2(161, 100)
+
+[node name="conveyer_segment" type="Area2D" unique_id=2034310328]
+script = ExtResource("1_slxjl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1902306842]
+position = Vector2(30.000008, -2.2499971)
+sprite_frames = SubResource("SpriteFrames_bp7du")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1736346427]
+position = Vector2(30.5, -3)
+shape = SubResource("RectangleShape2D_slxjl")
+script = ExtResource("2_slxjl")
