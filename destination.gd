@@ -17,7 +17,7 @@ func consume_parcel(parcel):
 	parcel.rejected = !is_valid(parcel)
 	
 func is_valid(parcel):
-	return false
+	return self == parcel.sorters[-1]["destination"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

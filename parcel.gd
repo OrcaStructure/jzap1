@@ -47,7 +47,6 @@ func click_parcel():
 	print("clicked!")
 
 func _physics_process(delta: float) -> void:
-	print(parcel_mode)
 	if parcel_mode == "conveyer":
 		bounced= false
 		var collision_info = move_and_collide(conveyer_velocity*delta)

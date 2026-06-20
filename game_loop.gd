@@ -42,6 +42,7 @@ func add_sorter(start_pos,end_pos,terminal,day):
 		conveyer.endpoint = spinner
 		add_child(spinner)
 		sorters[-1]["spinner"] = spinner
+		spinner.sorter = sorters[-1]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -66,7 +67,13 @@ func design_levels():
 					terminal = false
 				add_sorter(child.position, end_node.position,terminal,int(name_components[0]))
 	sorters.sort_custom(sorter_sort)
+	
 func get_direction(spinner, parcel):
+	var index = parcel.sorters.find(spinner.sorter)
+	print(index)
+	if index >= 0:
+		var destination = parcel.sorters[index + 1]["start_pos"]
+		return destination
 	return 'random'
 	
 func create_parcel():
@@ -80,6 +87,7 @@ func create_parcel():
 		parcel_sorters.append(sorters[last_sorter_number])
 	parcel.position = sorters[0]["start_pos"]
 	add_child(parcel)
+	parcel.sorters = parcel_sorters
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	day_timer += delta

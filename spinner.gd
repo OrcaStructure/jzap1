@@ -2,6 +2,7 @@ class_name Spinner
 extends StaticBody2D
 var game_loop
 var occupied = false
+var sorter
 var occupying_parcel
 var last_perp_vector
 var spin_velocity = 400
@@ -15,11 +16,9 @@ func spin_parcel(parcel):
 	occupied = true
 	occupying_parcel = parcel
 	destination_vector = game_loop.get_direction(self,occupying_parcel)
-	if destination_vector == "random":
+	if not destination_vector is Vector2:
 		var random_angle = randf_range(0,2 * PI)
-		destination_vector = Vector2(cos(random_angle),sin(random_angle))
-
-
+		destination_vector = position + 300 * Vector2(cos(random_angle),sin(random_angle))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if occupied == true:
@@ -30,8 +29,10 @@ func _process(delta: float) -> void:
 		if spin_velocity < 800:
 			spin_velocity += spin_acceleration * delta
 		else:
-			if perp_vector.angle_to(destination_vector) < 0.2:
-				if randf_range(0,1) < 0.1:
+			var difference_vector = (destination_vector - occupying_parcel.position).normalized()
+			if absf(perp_vector.angle_to(difference_vector)) < 0.2:
+				print(perp_vector,difference_vector,last_perp_vector)
+				if randf_range(0,1) < 0.4:
 					occupied = false
 					occupying_parcel.parcel_mode = "flung"
 					occupying_parcel.flung_direction = last_perp_vector * spin_velocity
