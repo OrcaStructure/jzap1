@@ -1,3 +1,28 @@
 [gd_scene format=3 uid="uid://ck4holg401bp5"]
 
-[node name="spinner" type="Node2D" unique_id=1503020550]
+[ext_resource type="Script" uid="uid://cilv3ca4lrix7" path="res://spinner.gd" id="1_1cp4b"]
+[ext_resource type="Texture2D" uid="uid://7rda3qg5v5ew" path="res://icon.svg" id="1_kke46"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cp4b"]
+size = Vector2(121, 119)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c7hx5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kke46")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="spinner" type="StaticBody2D" unique_id=826174204]
+script = ExtResource("1_1cp4b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=179495467]
+position = Vector2(2.5, -3.5)
+shape = SubResource("RectangleShape2D_1cp4b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1920724388]
+sprite_frames = SubResource("SpriteFrames_c7hx5")
