@@ -14,6 +14,7 @@ var validation_timer = 0
 var collision_shape
 var bounced = false
 var rejected
+var sorters = []
 func _ready() -> void:
 	input_pickable = true
 	collision_shape = get_node("CollisionShape2D")
