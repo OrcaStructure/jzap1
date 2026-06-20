@@ -1,7 +1,6 @@
 extends StaticBody2D
 
 var occupied = false
-
 var occupying_parcel
 var last_perp_vector
 var spin_velocity = 400
@@ -30,4 +29,4 @@ func _process(delta: float) -> void:
 			occupied = false
 			occupying_parcel.parcel_mode = "flung"
 			occupying_parcel.flung_direction = last_perp_vector * spin_velocity
-			
+			spin_velocity = 400
