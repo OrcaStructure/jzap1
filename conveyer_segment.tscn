@@ -1,14 +1,50 @@
 [gd_scene format=3 uid="uid://dlpfo5khes2os"]
 
 [ext_resource type="Script" uid="uid://hjj7q4266nk2" path="res://conveyer_segment.gd" id="1_slxjl"]
-[ext_resource type="Texture2D" uid="uid://c6uojfh2a8qo" path="res://track2.png" id="2_b3uaf"]
+[ext_resource type="Texture2D" uid="uid://vsb02e1f1iav" path="res://conveyer_frames/1.png" id="2_qqjy3"]
 [ext_resource type="Script" uid="uid://b73xmd25qremd" path="res://collision_shape_2d.gd" id="2_slxjl"]
+[ext_resource type="Texture2D" uid="uid://bl3naqitxu1s3" path="res://conveyer_frames/2.png" id="3_51vx0"]
+[ext_resource type="Texture2D" uid="uid://brl6hupsfknia" path="res://conveyer_frames/3.png" id="4_eeii8"]
+[ext_resource type="Texture2D" uid="uid://cs56l6edmsdr1" path="res://conveyer_frames/4.png" id="5_qqjy3"]
+[ext_resource type="Texture2D" uid="uid://d7tdamtmjtj6" path="res://conveyer_frames/5.png" id="6_51vx0"]
+[ext_resource type="Texture2D" uid="uid://k7xnnrccbobf" path="res://conveyer_frames/6.png" id="7_vl4dl"]
+[ext_resource type="Texture2D" uid="uid://ccgi1ra5vrv60" path="res://conveyer_frames/7.png" id="8_06136"]
+[ext_resource type="Texture2D" uid="uid://chw3t1ghoj3ma" path="res://conveyer_frames/8.png" id="9_ud2yd"]
+[ext_resource type="Texture2D" uid="uid://c4ikrb0hr3csf" path="res://conveyer_frames/9.png" id="10_jhjtt"]
+[ext_resource type="Texture2D" uid="uid://hemm45ler4q2" path="res://conveyer_frames/10.png" id="11_luc85"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bp7du"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_b3uaf")
+"texture": ExtResource("2_qqjy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_51vx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_eeii8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qqjy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_51vx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vl4dl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_06136")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ud2yd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jhjtt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_luc85")
 }],
 "loop": true,
 "name": &"default",
@@ -16,17 +52,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slxjl"]
-size = Vector2(200, 23)
+size = Vector2(200, 49)
 
 [node name="conveyer_segment" type="Area2D" unique_id=2034310328]
 script = ExtResource("1_slxjl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1902306842]
 position = Vector2(-1, -0.124996185)
-scale = Vector2(1, 0.25750005)
 sprite_frames = SubResource("SpriteFrames_bp7du")
+frame_progress = 0.46353883
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1736346427]
-position = Vector2(-3.8146973e-06, 0)
+position = Vector2(-3.8146973e-06, -1.5)
 shape = SubResource("RectangleShape2D_slxjl")
 script = ExtResource("2_slxjl")
