@@ -94,14 +94,18 @@ func _physics_process(delta: float) -> void:
 		else:
 			destination_node.occupied = false
 			parcel_mode = "validating"
+			destination_node.game_loop.get_node("invalid").show_text()
 			
 	elif parcel_mode == "validating":
 		validation_timer += delta
 		if validation_timer > 1:
 			if rejected == true:
-				scale = Vector2(1.0,1.0)
-				parcel_mode = "flung"
-				var random_angle = randf_range(0,2 * PI)
-				flung_destination = position + 200 * Vector2(cos(random_angle),sin(random_angle))
+				destination_node.eject_random_parcels(self)
 			else:
 				parcel_mode = "done"
+
+func fling_self():
+	scale = Vector2(1.0,1.0)
+	parcel_mode = "flung"
+	var random_angle = randf_range(0,2 * PI)
+	flung_destination = position + 200 * Vector2(cos(random_angle),sin(random_angle))

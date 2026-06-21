@@ -4,6 +4,7 @@ var conveyer_scene
 var parcel_scene
 var destination_scene
 var day = 2
+var sorted_parcels = []
 var sorters = []
 var total_parcels = 30
 var spawned_parcels = 0
@@ -29,6 +30,7 @@ func add_sorter(start_pos,end_pos,terminal,day):
 		sorters[-1]["terminal"] = true
 		var destination = destination_scene.instantiate()
 		destination.position = end_pos
+		destination.game_loop = self
 		conveyer.endpoint = destination
 		add_child(destination)
 		sorters[-1]["destination"] = destination

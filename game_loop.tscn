@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dknqnqax8bnj8" path="res://game_loop.gd" id="1_7f3si"]
 [ext_resource type="Script" uid="uid://bib07vhyqnuyn" path="res://sorter_level.gd" id="2_u3r3m"]
+[ext_resource type="Script" uid="uid://dcfuudsmirct5" path="res://invalid.gd" id="3_ksmgf"]
+
+[sub_resource type="Theme" id="Theme_x7b5a"]
+RichTextLabel/colors/default_color = Color(0.5829182, 0.048149593, 0.017299106, 1)
+RichTextLabel/font_sizes/normal_font_size = 64
 
 [node name="game_loop" type="Node2D" unique_id=213208169]
 script = ExtResource("1_7f3si")
@@ -48,3 +53,14 @@ script = ExtResource("2_u3r3m")
 [node name="3-2-end" type="Node2D" parent="level design" unique_id=2040240716]
 position = Vector2(117, 420)
 script = ExtResource("2_u3r3m")
+
+[node name="invalid" type="RichTextLabel" parent="." unique_id=20709048]
+offset_left = 375.0
+offset_top = 255.0
+offset_right = 807.0
+offset_bottom = 343.0
+theme = SubResource("Theme_x7b5a")
+text = "INVALID SORT"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("3_ksmgf")
