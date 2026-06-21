@@ -3,7 +3,7 @@ var spinner_scene
 var conveyer_scene
 var parcel_scene
 var destination_scene
-var day = 2
+var day = 3
 var sorted_parcels = []
 var sorters = []
 var total_parcels = 30
@@ -92,6 +92,7 @@ func create_parcel():
 	parcel.sorters = parcel_sorters
 
 func _draw():
+	return
 	draw_circle(sorters[-1]["start_pos"], 6.0, Color.RED)
 
 	

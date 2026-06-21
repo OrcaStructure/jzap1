@@ -94,7 +94,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			destination_node.occupied = false
 			parcel_mode = "validating"
-			destination_node.game_loop.get_node("invalid").show_text()
+			if rejected:
+				destination_node.game_loop.get_node("invalid").show_text()
 			
 	elif parcel_mode == "validating":
 		validation_timer += delta

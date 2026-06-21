@@ -1,19 +1,79 @@
 [gd_scene format=3 uid="uid://ck4holg401bp5"]
 
 [ext_resource type="Script" uid="uid://cilv3ca4lrix7" path="res://spinner.gd" id="1_1cp4b"]
-[ext_resource type="Texture2D" uid="uid://7rda3qg5v5ew" path="res://icon.svg" id="1_kke46"]
+[ext_resource type="Texture2D" uid="uid://d1f7j0065s51l" path="res://hedgehog_frames/frame1.png" id="2_rgo81"]
+[ext_resource type="Texture2D" uid="uid://d1rldmc1wdoow" path="res://hedgehog_frames/frame2.png" id="3_57rn8"]
+[ext_resource type="Texture2D" uid="uid://dolmy87o8dkjh" path="res://hedgehog_frames/frame3.png" id="4_ys7cv"]
+[ext_resource type="Texture2D" uid="uid://b5ap22seeqhoq" path="res://hedgehog_frames/frame4.png" id="5_lyb7p"]
+[ext_resource type="Texture2D" uid="uid://bwpvofumgbcir" path="res://hedgehog_frames/frame5.png" id="6_1pktc"]
+[ext_resource type="Texture2D" uid="uid://c62dpdntwihqm" path="res://hedgehog_frames/frame6.png" id="7_4okd6"]
+[ext_resource type="Texture2D" uid="uid://q4ngif8obls" path="res://hedgehog_frames/frame7.png" id="8_mrfs3"]
+[ext_resource type="Texture2D" uid="uid://c2g43cb1e4gqe" path="res://hedgehog_frames/frame8.png" id="9_ohygq"]
+[ext_resource type="Texture2D" uid="uid://biw3nm5agh81d" path="res://hedgehog_frames/frame9.png" id="10_gheox"]
+[ext_resource type="Texture2D" uid="uid://dwc25raphxdda" path="res://hedgehog_frames/frame10.png" id="11_srrwo"]
+[ext_resource type="Texture2D" uid="uid://wfmx8rsqvcct" path="res://hedgehog_frames/frame11.png" id="12_2ufk4"]
+[ext_resource type="Texture2D" uid="uid://clbn72soyhv0w" path="res://hedgehog_frames/frame12.png" id="13_hflgg"]
+[ext_resource type="Texture2D" uid="uid://dpeqjcuvevay5" path="res://hedgehog_frames/frame13.png" id="14_j6cq0"]
+[ext_resource type="Texture2D" uid="uid://dmdwjye0jjwya" path="res://hedgehog_frames/frame14.png" id="15_70ug4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cp4b"]
-size = Vector2(73, 65)
+size = Vector2(224, 189)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c7hx5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_kke46")
+"texture": ExtResource("2_rgo81")
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rgo81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_57rn8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ys7cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lyb7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1pktc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4okd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mrfs3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ohygq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gheox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_srrwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2ufk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_hflgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_j6cq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_70ug4")
+}],
+"loop": true,
+"name": &"spin",
 "speed": 5.0
 }]
 
@@ -21,10 +81,12 @@ animations = [{
 script = ExtResource("1_1cp4b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=179495467]
-position = Vector2(4.5, -2.5)
+position = Vector2(-17, 4.5)
 shape = SubResource("RectangleShape2D_1cp4b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1920724388]
-position = Vector2(3.999998, -1)
+position = Vector2(30, -25)
 scale = Vector2(0.5859375, 0.546875)
 sprite_frames = SubResource("SpriteFrames_c7hx5")
+animation = &"spin"
+frame_progress = 0.26381537
