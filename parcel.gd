@@ -3,7 +3,9 @@ extends CharacterBody2D
 var drag_rotation_velocity = 0
 var conveyer_velocity
 var parcel_mode = "static"
+var bird
 var dragging
+var start_pos
 var flung_direction
 var flung_destination
 var high_up = false
@@ -104,6 +106,15 @@ func _physics_process(delta: float) -> void:
 				destination_node.eject_random_parcels(self)
 			else:
 				parcel_mode = "done"
+	elif parcel_mode == "bird":
+		if (start_pos-position).length() < 20:
+			parcel_mode = "static"
+			collision_shape.disabled = false
+			bird.game.bird_on_the_way = false
+
+		else:
+			position = bird.position + Vector2(0,30)
+			collision_shape.disabled = true
 
 func fling_self():
 	scale = Vector2(1.0,1.0)

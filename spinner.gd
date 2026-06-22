@@ -33,6 +33,7 @@ func spin_parcel(parcel):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if occupied == true:
+		print(destination_vector)
 		var parcel_displacment = occupying_parcel.position - position
 		var current_frame_angle = deg_to_rad(frame_to_degrees[animater.frame])
 		var next_frame_number
@@ -42,7 +43,6 @@ func _process(delta: float) -> void:
 			next_frame_number = animater.frame + 1
 		var next_frame_angle = deg_to_rad(frame_to_degrees[next_frame_number])
 		var angle = (1-animater.frame_progress) * current_frame_angle + animater.frame_progress * next_frame_angle
-		print(current_frame_angle,next_frame_angle,angle)
 		var stick_position = position + Vector2(radius * cos(angle), -radius * sin(angle))
 		if (occupying_parcel.position - stick_position).length() < 10 - radius + (position-occupying_parcel.position).length() or parcel_attached:
 			occupying_parcel.position = stick_position

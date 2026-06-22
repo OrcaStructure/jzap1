@@ -10,7 +10,7 @@ var status = "underwater"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animater = get_node("Sprite2D")
-
+	animater.play("empty")
 func consume_parcel(parcel):
 	parcel.parcel_mode = 'static'
 	if parcel.destination_node == self:

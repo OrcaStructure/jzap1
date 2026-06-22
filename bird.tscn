@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://besqbk6p5ueyk"]
+
+[ext_resource type="Texture2D" uid="uid://dqcv7deerwaee" path="res://birdframes/1.png" id="1_6ljjq"]
+[ext_resource type="Script" uid="uid://d2or5evtq1xt4" path="res://bird.gd" id="1_axl6x"]
+[ext_resource type="Texture2D" uid="uid://da36nqi1ivavk" path="res://birdframes/2.png" id="2_axl6x"]
+[ext_resource type="Texture2D" uid="uid://c7qo5puhgtput" path="res://birdframes/3.png" id="3_yr30m"]
+[ext_resource type="Texture2D" uid="uid://dr5wpn1ys4rre" path="res://birdframes/4.png" id="4_2o5yp"]
+[ext_resource type="Texture2D" uid="uid://ypuedpovg0se" path="res://birdframes/5.png" id="5_k3v35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nk3w"]
+size = Vector2(30, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w265n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6ljjq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_axl6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yr30m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2o5yp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k3v35")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="bird" type="CharacterBody2D" unique_id=1696100030]
+z_index = 1
+script = ExtResource("1_axl6x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1367317699]
+position = Vector2(-5, 7)
+shape = SubResource("RectangleShape2D_6nk3w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=484237018]
+sprite_frames = SubResource("SpriteFrames_w265n")
+frame_progress = 0.9353508
