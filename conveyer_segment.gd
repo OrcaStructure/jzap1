@@ -3,6 +3,7 @@ var timer = 0
 var conveyer
 var direction
 var animater
+var multiplier_scale = 0.75
 var speed = 100
 var length_of_animation
 # Called when the node enters the scene tree for the first time.
@@ -22,12 +23,11 @@ func _process(delta: float) -> void:
 	if timer < 0.1:
 		return
 	if !conveyer.endpoint.occupied:
-		animater.speed_scale = speed / (200/length_of_animation)
+		animater.speed_scale = speed / (multiplier_scale * 200/length_of_animation)
 	else:	
 		animater.speed_scale = 0
 	for body in get_overlapping_bodies():
 		if body is Parcel and body.parcel_mode != "on_spinner" and body.parcel_mode != "dragging" and !body.high_up and !conveyer.endpoint.occupied and body.parcel_mode != "destination" and body.parcel_mode != "flung" and body.parcel_mode != "bird":
-			print(body)
 			body.parcel_mode = "conveyer"
 			body.conveyer_velocity = speed * direction.normalized()
 			

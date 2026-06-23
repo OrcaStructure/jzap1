@@ -6,6 +6,7 @@ var parcel_mode = "static"
 var bird
 var dragging
 var start_pos
+var predestined = true
 var flung_direction
 var flung_destination
 var high_up = false
@@ -16,7 +17,8 @@ var destination_target
 var validation_timer = 0
 var collision_shape
 var bounced = false
-var rejected
+var rejected = false
+var last_rejected = false
 var sorters = []
 func _ready() -> void:
 	input_pickable = true
@@ -50,6 +52,7 @@ func click_parcel():
 	print("clicked!")
 
 func _physics_process(delta: float) -> void:
+	predestined = true
 	if parcel_mode == "conveyer":
 		bounced= false
 		var collision_info = move_and_collide(conveyer_velocity*delta)
@@ -65,6 +68,7 @@ func _physics_process(delta: float) -> void:
 				collider.consume_parcel(self)
 			
 	elif parcel_mode == "flung":
+		predestined = false
 		collision_shape.disabled = true
 		if is_off_screen() and bounced == false:
 			print('off screen')
@@ -103,6 +107,8 @@ func _physics_process(delta: float) -> void:
 		validation_timer += delta
 		if validation_timer > 1:
 			if rejected == true:
+				rejected = false
+				last_rejected = true
 				destination_node.eject_random_parcels(self)
 			else:
 				parcel_mode = "done"

@@ -15,7 +15,6 @@ func _ready() -> void:
 	var stars = stars_scene.instantiate()
 	stars.type = 3
 	stars.day = day
-	print(stars.type)
 	replay.button_type = "replay"
 	next.button_type = "next_level"
 	levels.button_type = "level_select"

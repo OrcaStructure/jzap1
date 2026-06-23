@@ -55,6 +55,7 @@ animations = [{
 size = Vector2(200, 49)
 
 [node name="conveyer_segment" type="Area2D" unique_id=2034310328]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_slxjl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1902306842]

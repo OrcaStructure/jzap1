@@ -191,6 +191,7 @@ animations = [{
 }]
 
 [node name="destination" type="StaticBody2D" unique_id=1297411511]
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_ysfre")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=839542902]

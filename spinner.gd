@@ -3,7 +3,7 @@ extends StaticBody2D
 var game_loop
 var occupied = false
 var sorter
-var radius = 120
+var radius = 72
 var occupying_parcel
 var last_perp_vector
 var parcel_attached = false
@@ -33,7 +33,6 @@ func spin_parcel(parcel):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if occupied == true:
-		print(destination_vector)
 		var parcel_displacment = occupying_parcel.position - position
 		var current_frame_angle = deg_to_rad(frame_to_degrees[animater.frame])
 		var next_frame_number
