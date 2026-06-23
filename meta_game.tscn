@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bwdm3yaeuyybx"]
+
+[ext_resource type="Texture2D" uid="uid://bftgkh775xa77" path="res://background.png" id="1_n0uyg"]
+[ext_resource type="Script" uid="uid://bsrtvii1rwwg6" path="res://meta_game.gd" id="1_qijsd"]
+
+[node name="meta_game" type="Node2D" unique_id=2099297186]
+script = ExtResource("1_qijsd")
+
+[node name="ground" type="TextureRect" parent="." unique_id=251604228]
+z_index = -1
+offset_right = 1153.7067
+offset_bottom = 676.0
+texture = ExtResource("1_n0uyg")

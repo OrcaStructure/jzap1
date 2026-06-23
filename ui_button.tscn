@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://c52w4h5nmoixf"]
+
+[ext_resource type="Texture2D" uid="uid://ch2mhksyc6fqy" path="res://ui/level_template_dark.png" id="1_373k2"]
+[ext_resource type="Script" uid="uid://b3t7amehakqwa" path="res://ui_button.gd" id="1_b3r6l"]
+[ext_resource type="Texture2D" uid="uid://desi5fldtw4r6" path="res://ui/level_template_light.png" id="2_b3r6l"]
+[ext_resource type="Texture2D" uid="uid://bhwf0se0lm625" path="res://ui/next_dark.png" id="3_nn845"]
+[ext_resource type="Texture2D" uid="uid://d3u6y3ohfwbps" path="res://ui/level_icon.png" id="4_ls0cg"]
+[ext_resource type="Texture2D" uid="uid://cvgcqfaesx7iq" path="res://ui/play_dark.png" id="5_rk5uk"]
+[ext_resource type="Texture2D" uid="uid://dd5wirr53kdl4" path="res://ui/play_light.png" id="6_nktx2"]
+[ext_resource type="Texture2D" uid="uid://jrco6eub1b0h" path="res://ui/replay_actually_pressed.png" id="7_8xnlr"]
+[ext_resource type="Texture2D" uid="uid://dcpnqwsttm0to" path="res://ui/replay_presssed.png" id="8_uha8r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3r6l"]
+size = Vector2(129, 118)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r8lqs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_373k2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b3r6l")
+}],
+"loop": true,
+"name": &"level_select",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nn845")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ls0cg")
+}],
+"loop": true,
+"name": &"next_level",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_rk5uk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nktx2")
+}],
+"loop": true,
+"name": &"play",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_8xnlr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_uha8r")
+}],
+"loop": true,
+"name": &"replay",
+"speed": 5.0
+}]
+
+[node name="ui_button" type="Area2D" unique_id=1703273661]
+script = ExtResource("1_b3r6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=476859519]
+position = Vector2(2.5, 0)
+shape = SubResource("RectangleShape2D_b3r6l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=536334027]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_r8lqs")
+animation = &"level_select"

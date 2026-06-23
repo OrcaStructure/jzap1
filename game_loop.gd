@@ -54,6 +54,11 @@ func _ready() -> void:
 	spinner_scene = load("res://spinner.tscn")
 	conveyer_scene = load("res://conveyer.tscn")
 	destination_scene = load("res://destination.tscn")
+	var timer_scene = load("res://timer.tscn")
+	var timer =timer_scene.instantiate()
+	timer.position = Vector2(1000,75)
+	timer.count_up = true
+	add_child(timer)
 	design_levels()
 	global_start_pos = sorters[0]["start_pos"]
 

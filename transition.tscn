@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bh4jkjd2h5hdd"]
+
+[ext_resource type="Script" uid="uid://dt64lmaopld17" path="res://transition.gd" id="1_1ap01"]
+[ext_resource type="Texture2D" uid="uid://mf2ojp6e1auw" path="res://ui/transition1.png" id="1_4r5tf"]
+[ext_resource type="Texture2D" uid="uid://bot5mfxhbcl17" path="res://ui/transition3.png" id="2_1ap01"]
+[ext_resource type="Texture2D" uid="uid://djytm208bpaui" path="res://ui/transition2.png" id="3_m7m3o"]
+
+[node name="transition" type="Node2D" unique_id=1856377504]
+z_index = 4
+script = ExtResource("1_1ap01")
+
+[node name="2" type="Sprite2D" parent="." unique_id=494885563]
+position = Vector2(345.5, -350)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4r5tf")
+
+[node name="3" type="Sprite2D" parent="." unique_id=1081728606]
+position = Vector2(575.5, 1000)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1ap01")
+
+[node name="1" type="Sprite2D" parent="." unique_id=1305256121]
+position = Vector2(115, 1000)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_m7m3o")
+
+[node name="4" type="Sprite2D" parent="." unique_id=1742514661]
+position = Vector2(805, -350)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4r5tf")
+
+[node name="5" type="Sprite2D" parent="." unique_id=1829168226]
+position = Vector2(1035, 1000)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_m7m3o")

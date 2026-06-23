@@ -1,0 +1,35 @@
+extends Node2D
+
+var day = 5
+var time = 450
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var button = load("res://ui_button.tscn")
+	var timer_scene = load("res://timer.tscn")
+	var replay = button.instantiate()
+	var next = button.instantiate()
+	var timer = timer_scene.instantiate()
+	timer.time = time
+	var levels = button.instantiate()
+	var stars_scene = load("res://level_stars.tscn")
+	var stars = stars_scene.instantiate()
+	stars.type = 3
+	stars.day = day
+	print(stars.type)
+	replay.button_type = "replay"
+	next.button_type = "next_level"
+	levels.button_type = "level_select"
+	timer.position = Vector2(550,350)
+	stars.position = Vector2(550,250)
+	levels.position = Vector2(350,450)
+	replay.position = Vector2(550,450)
+	next.position = Vector2(750,450)
+	add_child(stars)
+	add_child(replay)
+	add_child(timer)
+	add_child(next)
+	add_child(levels)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass

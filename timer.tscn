@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://derpvw3s05uh4"]
+
+[ext_resource type="Script" uid="uid://cxacmclyl0cfv" path="res://timer.gd" id="1_o6fnk"]
+[ext_resource type="FontFile" uid="uid://b02sd6jw14mnb" path="res://fonts/kirifont/KiriFont.ttf" id="1_ye2uk"]
+[ext_resource type="Texture2D" uid="uid://ct3yy40gyhve2" path="res://ui/button_unpressed.png" id="2_o6fnk"]
+
+[sub_resource type="Theme" id="Theme_mxtnu"]
+default_font = ExtResource("1_ye2uk")
+RichTextLabel/colors/default_color = Color(0.70980394, 0.7411765, 0.5372549, 1)
+RichTextLabel/font_sizes/normal_font_size = 26
+
+[node name="timer" type="Node2D" unique_id=252229932]
+script = ExtResource("1_o6fnk")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1840123403]
+z_index = 2
+offset_left = -92.0
+offset_top = -21.0
+offset_right = 53.0
+offset_bottom = 19.0
+theme = SubResource("Theme_mxtnu")
+bbcode_enabled = true
+text = "[center]{1:23}[/center]"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1491428611]
+texture = ExtResource("2_o6fnk")
