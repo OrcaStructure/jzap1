@@ -7,7 +7,13 @@ func _ready() -> void:
 	var button = load("res://ui_button.tscn")
 	var timer_scene = load("res://timer.tscn")
 	var replay = button.instantiate()
-	var next = button.instantiate()
+	if day < 6:
+		var next = button.instantiate()
+		next.button_destination = day + 1
+		next.button_type = "next_level"
+		next.position = Vector2(750,450)
+		add_child(next)
+
 	var timer = timer_scene.instantiate()
 	timer.time = time
 	var levels = button.instantiate()
@@ -16,17 +22,15 @@ func _ready() -> void:
 	stars.type = 3
 	stars.day = day
 	replay.button_type = "replay"
-	next.button_type = "next_level"
+	
 	levels.button_type = "level_select"
 	timer.position = Vector2(550,350)
 	stars.position = Vector2(550,250)
 	levels.position = Vector2(350,450)
 	replay.position = Vector2(550,450)
-	next.position = Vector2(750,450)
 	add_child(stars)
 	add_child(replay)
 	add_child(timer)
-	add_child(next)
 	add_child(levels)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -2,18 +2,31 @@ extends Node2D
 var spinner_scene
 var conveyer_scene
 var parcel_scene
+var metagame
+var sort_text
+var sort_count
+var game_over =false
 var destination_scene
 var day = 3
 var bird_on_the_way = false
 var bird_scene
 var sorted_parcels = []
+var parcel_numbers_to_make = []
 var sorters = []
-var total_parcels = 30
+var total_parcels
 var global_start_pos
 var spawned_parcels = 0
 var day_timer = 0 
 var parcels = []
 
+var level_parcels = {
+	"default" : [4,8,12,14,16,22],
+	"blue" : [1,1,1,2,2,3],
+	"red" : [0,0,1,2,2,3],
+	"black" : [0,0,0,0,1,2]
+} 
+func parcel_key(number):
+	return (number * 7) % 23
 func sorter_sort(a,b):
 	return a["day"] < b["day"]
 	
@@ -51,15 +64,39 @@ func add_sorter(start_pos,end_pos,terminal,sorter_day):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	metagame = get_tree().root.get_node("meta_game")
 	spinner_scene = load("res://spinner.tscn")
 	conveyer_scene = load("res://conveyer.tscn")
 	destination_scene = load("res://destination.tscn")
+	var sort_text_scene = load("res://parcels_remaining.tscn")
+	var sort_count_scene = load("res://to_sort_count.tscn")
 	var timer_scene = load("res://timer.tscn")
 	var timer =timer_scene.instantiate()
+	sort_text = sort_text_scene.instantiate()
+	sort_count =  sort_count_scene.instantiate()
+	sort_text.position = Vector2(250,75)
+	sort_count.position = Vector2(50,75)
+	
 	timer.position = Vector2(1000,75)
 	timer.count_up = true
 	add_child(timer)
+	add_child(sort_count)
+	add_child(sort_text)
 	design_levels()
+	var default_parcel_count = level_parcels["default"][day-1]
+	for i in range(default_parcel_count):
+		parcel_numbers_to_make.append(["default",parcel_key(i+1)])
+	var red_parcel_count = level_parcels["red"][day-1]
+	for i in range(red_parcel_count):
+		parcel_numbers_to_make.append(["red",i])
+	var blue_parcel_count = level_parcels["blue"][day-1]
+	for i in range(blue_parcel_count):
+		parcel_numbers_to_make.append(["blue",i])
+	var black_parcel_count = level_parcels["black"][day-1]
+	for i in range(black_parcel_count):
+		parcel_numbers_to_make.append(["black",i])
+	parcel_numbers_to_make.shuffle()
+	total_parcels = len(parcel_numbers_to_make)
 	global_start_pos = sorters[0]["start_pos"]
 
 	parcel_scene = load("res://parcel.tscn")
@@ -89,10 +126,43 @@ func get_direction(spinner, parcel):
 		return destination
 	return 'random'
 	
+func explode():
+	if game_over:
+		return
+	game_over = true
+
+	var explosion_scene = load("res://explosion.tscn")
+	var explosion = explosion_scene.instantiate()
+	explosion.level = day
+	add_child(explosion)
+	print("exploded succesfully")
+	
+func win():
+	if game_over:
+		return
+	game_over = true
+	var win_scene = load("res://sorted.tscn")
+	var sorted = win_scene.instantiate()
+	sorted.level = day
+	sorted.game_time = day_timer
+	add_child(sorted)
+
+func _input(event):
+	if !game_over:
+		if event.is_action_pressed("escape"):
+			game_over = true
+			metagame.transition(self, "level_select",{})
+		elif event.is_action_pressed("restart"):
+			game_over = true
+			metagame.transition(self, "game_loop",{"day":day})
 func create_parcel():
 	var total_sorters = len(sorters)
 	var parcel = parcel_scene.instantiate()
+	var parcel_number = parcel_numbers_to_make.pop_front()
+	parcel.number = parcel_number 
 	parcels.append(parcel)
+	parcel.day = day
+	parcel.game_loop = self
 	var parcel_sorters = [sorters[0]]
 	var last_sorter_number = 0
 	while !parcel_sorters[-1]["terminal"]:
@@ -119,11 +189,16 @@ func _process(delta: float) -> void:
 	queue_redraw()
 	day_timer += delta
 	var parcel_at_spawn = false
+	var done_parcels = 0
 	for parcel in parcels:
+		if parcel.parcel_mode == "done":
+			done_parcels += 1
 		if (parcel.position-global_start_pos).length() < 50:
 			parcel_at_spawn = true
-	if !parcel_at_spawn and !bird_on_the_way and global_start_pos:
-		print('made it here')
+	sort_count.get_node("RichTextLabel").text = "[center]{"+	str(total_parcels-done_parcels)+ "}[/center]"
+	if done_parcels == total_parcels:
+		win()
+	if len(parcel_numbers_to_make)>0 and !parcel_at_spawn and !bird_on_the_way and global_start_pos:
 		create_parcel()
 		spawned_parcels += 1
 	

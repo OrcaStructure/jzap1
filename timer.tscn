@@ -18,6 +18,7 @@ offset_left = -92.0
 offset_top = -21.0
 offset_right = 53.0
 offset_bottom = 19.0
+mouse_filter = 2
 theme = SubResource("Theme_mxtnu")
 bbcode_enabled = true
 text = "[center]{1:23}[/center]"

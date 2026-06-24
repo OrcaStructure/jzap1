@@ -8,6 +8,7 @@ script = ExtResource("1_qijsd")
 
 [node name="ground" type="TextureRect" parent="." unique_id=251604228]
 z_index = -1
+offset_top = -11.0
 offset_right = 1153.7067
-offset_bottom = 676.0
+offset_bottom = 665.0
 texture = ExtResource("1_n0uyg")

@@ -4,7 +4,13 @@ var drag_rotation_velocity = 0
 var conveyer_velocity
 var parcel_mode = "static"
 var bird
+var number
+var bounce_time = 0
+var fuse = false
+var day
+var game_loop
 var dragging
+var crouch_time
 var start_pos
 var predestined = true
 var flung_direction
@@ -17,14 +23,32 @@ var destination_target
 var validation_timer = 0
 var collision_shape
 var bounced = false
+var timer = 0
 var rejected = false
 var last_rejected = false
 var sorters = []
+var animater
+var parcel_kind
 func _ready() -> void:
 	input_pickable = true
 	collision_shape = get_node("CollisionShape2D")
-	
-
+	animater = get_node('Sprite2D')
+	parcel_kind = number[0]
+	if parcel_kind == "default":
+		animater.play("default")
+		animater.set_frame_and_progress(number[1]-1,0)
+	elif parcel_kind == "blue":
+		animater.play("blue")
+		animater.set_frame_and_progress(number[1],0)
+	elif parcel_kind == "red":
+		animater.play("red")
+		animater.set_frame_and_progress(number[1],0)
+	elif parcel_kind == "black":
+		if number[1] == 0:
+			animater.play("black1")
+		else:
+			animater.play("black2")
+	animater.pause()
 	
 func is_off_screen():
 	var collider_shape = collision_shape.shape as RectangleShape2D
@@ -36,6 +60,7 @@ func is_off_screen():
 	
 func _input_event(viewport,event, shape):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		print("not grabbing for some reason")
 		if event.pressed:
 			parcel_mode = "dragging"
 			mouse_click_position = get_global_mouse_position()
@@ -49,11 +74,58 @@ func _input_event(viewport,event, shape):
 			rotation = 0
 
 func click_parcel():
-	print("clicked!")
+	if fuse:
+		fuse = false
+		if number[1] == 0:
+			animater.play("black1")
+		else:	
+			animater.play("black2")
+		animater.pause()
 
 func _physics_process(delta: float) -> void:
 	predestined = true
+	timer += delta
+	
+	if is_off_screen() and bounced == false and parcel_mode != "bird" and parcel_mode != "dragging":
+			print('off screen')
+			parcel_mode = "static"
+			collision_shape.disabled = false
+
+			var direction = Vector2(650,350)-position
+			position += delta * direction
+			#fling_self()
+			#flung_destination = (2* position - Vector2(750,350))/3
+			#bounced = true
+			#bounce_time = timer
+	
+	if parcel_mode != "bird" and parcel_mode != "validating" and parcel_mode != "done" and parcel_kind == "black" and randf() < 0.001:
+		print("lit")
+		if number[1] == 0:
+			animater.play("fuse1")
+		else:	
+			animater.play("fuse2")
+		fuse = true
+	
+	if fuse:
+		print(animater.frame)
+		if ((number[1] == 0 and animater.frame == 7) or (number[1] == 1 and animater.frame == 9)):
+			
+			fuse = false
+			print('boom')
+			if number[1] == 0:
+				animater.play("black1")
+			else:	
+				animater.play("black2")
+			animater.pause()
+			game_loop.explode()
+			
+			
 	if parcel_mode == "conveyer":
+		var random_threshold = 0.01
+		if parcel_kind == "blue" and ((randf() < random_threshold and day > 1) or (day ==1 and position.x > 150 and position.x < 180)):
+			parcel_mode = "crouch"
+			crouch_time = timer
+			return
 		bounced= false
 		var collision_info = move_and_collide(conveyer_velocity*delta)
 		parcel_mode = "unconveyer"
@@ -70,10 +142,7 @@ func _physics_process(delta: float) -> void:
 	elif parcel_mode == "flung":
 		predestined = false
 		collision_shape.disabled = true
-		if is_off_screen() and bounced == false:
-			print('off screen')
-			flung_destination = 2 * position - flung_destination
-			bounced = true
+		
 			
 		
 		if (position - flung_destination).length() < 10:
@@ -94,7 +163,7 @@ func _physics_process(delta: float) -> void:
 	elif parcel_mode == "destination":
 		if scale.length() > 0.05:
 			destination_node.occupied = true
-			var direction = (destination_target-position).normalized()
+			var direction = (destination_target + Vector2(0,-30)-position).normalized()
 			position += direction * 100 * delta
 			scale *= 0.95
 		else:
@@ -113,7 +182,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				parcel_mode = "done"
 	elif parcel_mode == "bird":
-		if (start_pos-position).length() < 20:
+		if (start_pos+Vector2(0,-20)-position).length() < 20:
 			parcel_mode = "static"
 			collision_shape.disabled = false
 			bird.game.bird_on_the_way = false
@@ -121,9 +190,16 @@ func _physics_process(delta: float) -> void:
 		else:
 			position = bird.position + Vector2(0,30)
 			collision_shape.disabled = true
-
+	elif parcel_mode == "crouch":
+		scale.y *= 0.99
+		if timer > crouch_time + 0.5:
+			scale.y =1
+			fling_self()
 func fling_self():
+	if timer < bounce_time + 3:
+		return
 	scale = Vector2(1.0,1.0)
 	parcel_mode = "flung"
+	bounced = false
 	var random_angle = randf_range(0,2 * PI)
 	flung_destination = position + 200 * Vector2(cos(random_angle),sin(random_angle))

@@ -3,6 +3,7 @@ extends Area2D
 var button_type
 var animater
 var metagame
+var button_destination = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
@@ -18,10 +19,12 @@ func _ready() -> void:
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if button_type == "play":
-				metagame.transition(self.get_parent(),"post_level",{"day":2,"time":145})
+			if button_type == "play" and button_destination > 0:
+				metagame.transition(self.get_parent(),"game_loop",{"day":button_destination})
 			elif button_type == "level_select":
 				metagame.transition(self.get_parent(), "level_select",{})
+			elif button_type == "replay":
+				metagame.transition(self.get_parent(), "game_loop",{"day":button_destination-1})
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

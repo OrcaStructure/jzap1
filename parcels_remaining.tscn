@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cdrhp6u87slef"]
+
+[ext_resource type="FontFile" uid="uid://b02sd6jw14mnb" path="res://fonts/kirifont/KiriFont.ttf" id="1_w53ts"]
+[ext_resource type="Texture2D" uid="uid://ct3yy40gyhve2" path="res://ui/button_unpressed.png" id="2_pf8vs"]
+
+[sub_resource type="Theme" id="Theme_7sx3v"]
+default_font = ExtResource("1_w53ts")
+RichTextLabel/colors/default_color = Color(0.70980394, 0.7411765, 0.5372549, 1)
+RichTextLabel/font_sizes/normal_font_size = 26
+
+[node name="parcels_remaining" type="Node2D" unique_id=1710898950]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1679998659]
+z_index = 2
+offset_left = -138.0
+offset_top = -52.0
+offset_right = 117.0
+offset_bottom = 26.0
+mouse_filter = 2
+theme = SubResource("Theme_7sx3v")
+bbcode_enabled = true
+text = "
+[center]{PARCELS TO SORT}[/center]"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=117348294]
+position = Vector2(-3, 2)
+texture = ExtResource("2_pf8vs")

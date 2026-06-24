@@ -199,7 +199,7 @@ position = Vector2(2.6875, 2.9375)
 shape = SubResource("RectangleShape2D_ysfre")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1560655546]
-position = Vector2(2.093748, 2.96875)
+position = Vector2(1.6666665, -31.666664)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_8pc0g")
 animation = &"eat"

@@ -44,7 +44,6 @@ func eject_random_parcels(caller):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(status)
 	timer += delta
 	if timer > 1 and status == "underwater":
 		animater.play("enterexit")

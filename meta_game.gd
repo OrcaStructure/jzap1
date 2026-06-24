@@ -3,6 +3,7 @@ extends Node2D
 var main_menu_scene
 var level_select_scene
 var post_level_scene
+var level_completion = [3,2,3,3,3]
 var transition_scene
 var main_menu
 var transition_timer = 0
@@ -23,6 +24,11 @@ func _ready() -> void:
 	add_child(main_menu)
 	
 func transition(scene_from, scene_to,data):
+	transition_stage = 0
+	transition_timer = 0
+	print("destroy_transition_time")
+	if is_instance_valid(transition_node):
+		transition_node.queue_free()
 	transition_stage = 1
 	transition_from = scene_from
 	transition_to = scene_to
@@ -35,7 +41,8 @@ func _process(delta: float) -> void:
 	if transition_stage > 0:
 		transition_timer += delta
 	if transition_timer > 1 and transition_stage == 1:
-		transition_from.queue_free()
+		if is_instance_valid(transition_from):
+			transition_from.queue_free()
 		transition_stage = 2
 		if transition_to == "post_level":
 			var post_level = post_level_scene.instantiate()
@@ -48,10 +55,12 @@ func _process(delta: float) -> void:
 			add_child(game_loop)
 		elif transition_to == "level_select":
 			var level_select = level_select_scene.instantiate()
+			level_select.level_completion = level_completion
 			add_child(level_select)
 	if transition_timer > 3:
 		transition_stage = 0
 		transition_timer = 0
+		print("destroy_transition_time")
 		if is_instance_valid(transition_node):
 			transition_node.queue_free()
 				
