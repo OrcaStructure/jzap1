@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://dstf1j3vke7nk"]
+
+[ext_resource type="Script" uid="uid://bj2s8klk0qmob" path="res://menu_hedgehog.gd" id="1_6nl30"]
+[ext_resource type="Texture2D" uid="uid://c2db6uajic5id" path="res://hedgehog walk/1.png" id="1_vxqx8"]
+[ext_resource type="Texture2D" uid="uid://d1f7j0065s51l" path="res://hedgehog_frames/frame1.png" id="2_2wfh5"]
+[ext_resource type="Texture2D" uid="uid://kem30id7egb" path="res://hedgehog walk/2.png" id="2_q5ia8"]
+[ext_resource type="Texture2D" uid="uid://d1rldmc1wdoow" path="res://hedgehog_frames/frame2.png" id="3_6nl30"]
+[ext_resource type="Texture2D" uid="uid://b61jh5ej8su07" path="res://hedgehog walk/3.png" id="3_ywkke"]
+[ext_resource type="Texture2D" uid="uid://dbd4k26waikvt" path="res://hedgehog walk/4.png" id="4_bepi8"]
+[ext_resource type="Texture2D" uid="uid://dolmy87o8dkjh" path="res://hedgehog_frames/frame3.png" id="4_mkhq1"]
+[ext_resource type="Texture2D" uid="uid://b5ap22seeqhoq" path="res://hedgehog_frames/frame4.png" id="5_0gw5l"]
+[ext_resource type="Texture2D" uid="uid://bf6kvk13j0ld2" path="res://hedgehog walk/5.png" id="5_i7fxa"]
+[ext_resource type="Texture2D" uid="uid://dx1mbt7bctd1k" path="res://hedgehog walk/6.png" id="6_3xy0h"]
+[ext_resource type="Texture2D" uid="uid://bwpvofumgbcir" path="res://hedgehog_frames/frame5.png" id="6_v6osq"]
+[ext_resource type="Texture2D" uid="uid://c62dpdntwihqm" path="res://hedgehog_frames/frame6.png" id="7_f2swy"]
+[ext_resource type="Texture2D" uid="uid://bpcfn2op82trs" path="res://hedgehog walk/7.png" id="7_stxu6"]
+[ext_resource type="Texture2D" uid="uid://q4ngif8obls" path="res://hedgehog_frames/frame7.png" id="8_83dpx"]
+[ext_resource type="Texture2D" uid="uid://cyhnhih5tcgte" path="res://hedgehog walk/8.png" id="8_ftpm5"]
+[ext_resource type="Texture2D" uid="uid://bjsuall4ylpwo" path="res://hedgehog walk/9.png" id="9_2d7pb"]
+[ext_resource type="Texture2D" uid="uid://c2g43cb1e4gqe" path="res://hedgehog_frames/frame8.png" id="9_vk866"]
+[ext_resource type="Texture2D" uid="uid://biw3nm5agh81d" path="res://hedgehog_frames/frame9.png" id="10_4k5vw"]
+[ext_resource type="Texture2D" uid="uid://d3aisfllfw3ki" path="res://hedgehog walk/10.png" id="10_yw3vl"]
+[ext_resource type="Texture2D" uid="uid://dwc25raphxdda" path="res://hedgehog_frames/frame10.png" id="11_mxla6"]
+[ext_resource type="Texture2D" uid="uid://wfmx8rsqvcct" path="res://hedgehog_frames/frame11.png" id="12_5qcj5"]
+[ext_resource type="Texture2D" uid="uid://clbn72soyhv0w" path="res://hedgehog_frames/frame12.png" id="13_s2lbg"]
+[ext_resource type="Texture2D" uid="uid://dpeqjcuvevay5" path="res://hedgehog_frames/frame13.png" id="14_1e7ym"]
+[ext_resource type="Texture2D" uid="uid://dmdwjye0jjwya" path="res://hedgehog_frames/frame14.png" id="15_kb2je"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xy0h"]
+animations = [{
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("1_vxqx8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2wfh5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6nl30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mkhq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0gw5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_v6osq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f2swy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_83dpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vk866")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4k5vw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_mxla6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5qcj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_s2lbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_1e7ym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kb2je")
+}],
+"loop": true,
+"name": &"throw",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("1_vxqx8")
+}, {
+"duration": 0.3,
+"texture": ExtResource("2_q5ia8")
+}, {
+"duration": 0.3,
+"texture": ExtResource("3_ywkke")
+}, {
+"duration": 0.3,
+"texture": ExtResource("4_bepi8")
+}, {
+"duration": 0.3,
+"texture": ExtResource("5_i7fxa")
+}, {
+"duration": 0.3,
+"texture": ExtResource("4_bepi8")
+}, {
+"duration": 0.3,
+"texture": ExtResource("3_ywkke")
+}, {
+"duration": 0.3,
+"texture": ExtResource("2_q5ia8")
+}, {
+"duration": 0.3,
+"texture": ExtResource("1_vxqx8")
+}, {
+"duration": 0.3,
+"texture": ExtResource("6_3xy0h")
+}, {
+"duration": 0.3,
+"texture": ExtResource("7_stxu6")
+}, {
+"duration": 0.3,
+"texture": ExtResource("8_ftpm5")
+}, {
+"duration": 0.3,
+"texture": ExtResource("9_2d7pb")
+}, {
+"duration": 0.3,
+"texture": ExtResource("10_yw3vl")
+}, {
+"duration": 0.3,
+"texture": ExtResource("9_2d7pb")
+}, {
+"duration": 0.3,
+"texture": ExtResource("8_ftpm5")
+}, {
+"duration": 0.3,
+"texture": ExtResource("7_stxu6")
+}, {
+"duration": 0.3,
+"texture": ExtResource("6_3xy0h")
+}, {
+"duration": 0.3,
+"texture": ExtResource("1_vxqx8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="menu_hedgehog" type="Node2D" unique_id=1458085119]
+script = ExtResource("1_6nl30")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=595004294]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_3xy0h")
+animation = &"throw"

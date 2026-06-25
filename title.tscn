@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://br7kybln8ec0o"]
+
+[ext_resource type="Texture2D" uid="uid://bmkhqfvvob8ew" path="res://title.png" id="1_y7k74"]
+
+[node name="title" type="TextureRect" unique_id=1307669570]
+offset_left = 265.0
+offset_top = 5.0
+offset_right = 905.0
+offset_bottom = 261.0
+texture = ExtResource("1_y7k74")
+expand_mode = 1

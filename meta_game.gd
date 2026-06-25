@@ -3,7 +3,7 @@ extends Node2D
 var main_menu_scene
 var level_select_scene
 var post_level_scene
-var level_completion = [3,2,3,3,3]
+var level_completion = [3,2,3,3]
 var transition_scene
 var main_menu
 var transition_timer = 0

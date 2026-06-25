@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://co6ftp4youxyd"]
+
+[ext_resource type="Script" uid="uid://df42tj7vo04vj" path="res://menu_parcel.gd" id="1_ljpf1"]
+[ext_resource type="Texture2D" uid="uid://c87o3wg41wr1m" path="res://parcel_designs/40.png" id="1_wc715"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc715"]
+size = Vector2(73, 50)
+
+[node name="menu_parcel" type="Area2D" unique_id=1155381084]
+script = ExtResource("1_ljpf1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=190658308]
+position = Vector2(4.5, 7)
+shape = SubResource("RectangleShape2D_wc715")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=356397407]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_wc715")
