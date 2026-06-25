@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cfftstlj4yll3"]
 
-[ext_resource type="FontFile" uid="uid://b02sd6jw14mnb" path="res://fonts/kirifont/KiriFont.ttf" id="1_hp2tf"]
+[ext_resource type="FontFile" uid="uid://db38ovuhi5lkk" path="res://fonts/Anton,Chelsea_Market,Syne_Mono/Chelsea_Market/ChelseaMarket-Regular.ttf" id="1_hp2tf"]
 [ext_resource type="Texture2D" uid="uid://de6wtob2foss" path="res://ui/empty.png" id="2_2y61m"]
 
 [sub_resource type="Theme" id="Theme_x4hvl"]
@@ -12,20 +12,19 @@ RichTextLabel/font_sizes/normal_font_size = 32
 [node name="to_sort_count" type="Node2D" unique_id=127806980]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1297129206]
-z_index = 2
-offset_left = -136.0
-offset_top = -22.0
-offset_right = 119.0
-offset_bottom = 56.0
+offset_left = -129.0
+offset_top = -14.0
+offset_right = 126.0
+offset_bottom = 64.0
 mouse_filter = 2
 theme = SubResource("Theme_x4hvl")
 bbcode_enabled = true
 text = "
-[center]{20}[/center]"
+[center]20[/center]"
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1537766556]
-z_index = 1
+z_index = -1
 position = Vector2(-3, 2)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_2y61m")

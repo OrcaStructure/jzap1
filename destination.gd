@@ -32,7 +32,11 @@ func is_valid(parcel):
 
 func eject_random_parcels(caller):
 	eject_parcel.append(caller)
-	var ejection_number = randi_range(2,4)
+	var ejection_number 
+	if game_loop.invalid_count % 4 == 0:
+		ejection_number = 6
+	else:
+		ejection_number = randi_range(2,4)
 	for i in range(ejection_number):
 		if len(game_loop.sorted_parcels) > 0:
 			var parcel = game_loop.sorted_parcels.pop_front()

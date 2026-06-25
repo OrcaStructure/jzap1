@@ -10,6 +10,7 @@ var animater
 var metagame
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	input_pickable = true
 	metagame = get_tree().root.get_node("meta_game")
 	
@@ -18,11 +19,11 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 	animater = get_node("AnimatedSprite2D")
 	text_node = get_node("RichTextLabel")
-	text_node.text = "[center]{"+str(day)+"}[/center]"
+	text_node.text = "[center]"+str(day)+"[/center]"
 
 	if type == -2:
 		animater.play("lock")
-		text_node.text = "[center]{"+"}[/center]"
+		text_node.text = "[center]"+"[/center]"
 
 	elif type == -1:
 		animater.play("ready")
@@ -43,7 +44,8 @@ func _on_mouse_entered():
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			metagame.transition(self.get_parent(),"game_loop",{"day":day})
+			metagame.transition(self.get_parent(),"exposition",{"number":day-1,"scene":"game_loop","data":{"day":day}})
+
 	
 func _on_mouse_exited():
 	if level_select:

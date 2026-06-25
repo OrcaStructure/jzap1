@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if count_up:
 		time += delta
-	text_node.text = "[center]{"+	str(roundi(float(time)))+ "}[/center]"
+	text_node.text = "[center]"+	str(roundi(float(time)))+ "[/center]"
 
 	
 

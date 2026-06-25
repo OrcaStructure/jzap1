@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://cdrhp6u87slef"]
 
-[ext_resource type="FontFile" uid="uid://b02sd6jw14mnb" path="res://fonts/kirifont/KiriFont.ttf" id="1_w53ts"]
+[ext_resource type="FontFile" uid="uid://db38ovuhi5lkk" path="res://fonts/Anton,Chelsea_Market,Syne_Mono/Chelsea_Market/ChelseaMarket-Regular.ttf" id="1_w53ts"]
 [ext_resource type="Texture2D" uid="uid://ct3yy40gyhve2" path="res://ui/button_unpressed.png" id="2_pf8vs"]
 
 [sub_resource type="Theme" id="Theme_7sx3v"]
 default_font = ExtResource("1_w53ts")
+default_font_size = 0
 RichTextLabel/colors/default_color = Color(0.70980394, 0.7411765, 0.5372549, 1)
-RichTextLabel/font_sizes/normal_font_size = 26
+RichTextLabel/font_sizes/normal_font_size = 23
 
 [node name="parcels_remaining" type="Node2D" unique_id=1710898950]
 
@@ -20,7 +21,7 @@ mouse_filter = 2
 theme = SubResource("Theme_7sx3v")
 bbcode_enabled = true
 text = "
-[center]{PARCELS TO SORT}[/center]"
+[center]PARCELS TO SORT[/center]"
 scroll_active = false
 metadata/_edit_use_anchors_ = true
 

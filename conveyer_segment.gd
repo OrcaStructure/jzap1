@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	else:	
 		animater.speed_scale = 0
 	for body in get_overlapping_bodies():
-		if body is Parcel and body.parcel_mode != "on_spinner" and body.parcel_mode != "dragging" and !body.high_up and !conveyer.endpoint.occupied and body.parcel_mode != "destination" and body.parcel_mode != "flung" and body.parcel_mode != "bird" and body.parcel_mode != "crouch":
+		if body is Parcel and body.parcel_mode != "on_spinner" and body.parcel_mode != "dragging" and !body.high_up and !conveyer.endpoint.occupied and body.parcel_mode != "destination" and body.parcel_mode != "validating" and body.parcel_mode != "done" and body.parcel_mode != "flung" and body.parcel_mode != "bird" and body.parcel_mode != "crouch":
 			body.parcel_mode = "conveyer"
 			body.conveyer_velocity = speed * direction.normalized()
 			

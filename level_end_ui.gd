@@ -1,12 +1,24 @@
 extends Node2D
 
 var day = 5
+var metagame
 var time = 450
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var button = load("res://ui_button.tscn")
 	var timer_scene = load("res://timer.tscn")
 	var replay = button.instantiate()
+	metagame = get_tree().root.get_node("meta_game")
+	
+	var pbs = metagame.pbs
+	if len(pbs) >= day:
+		if pbs[day-1] > time:
+			new_pb()
+	else:
+		metagame.pbs.append("")
+		new_pb()
+	
+	
 	if day < 6:
 		var next = button.instantiate()
 		next.button_destination = day + 1
@@ -33,6 +45,13 @@ func _ready() -> void:
 	add_child(timer)
 	add_child(levels)
 
+func new_pb():
+	metagame.pbs[day-1] = time
+	var new_pb_scene = load("res://newpb.tscn")
+ 	
+	var new_pb = new_pb_scene.instantiate()
+	new_pb.position = Vector2(700,300)
+	add_child(new_pb)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b02sd6jw14mnb"
-path="res://.godot/imported/KiriFont.ttf-23206acea37b6ec5640f1c8d48b7d35d.fontdata"
+uid="uid://cbxoi0onehiyc"
+path="res://.godot/imported/SyneMono-Regular.ttf-fc22fcbc5d67fdab689f5b3ac73d0d63.fontdata"
 
 [deps]
 
-source_file="res://fonts/kirifont/KiriFont.ttf"
-dest_files=["res://.godot/imported/KiriFont.ttf-23206acea37b6ec5640f1c8d48b7d35d.fontdata"]
+source_file="res://fonts/Anton,Chelsea_Market,Syne_Mono/Syne_Mono/SyneMono-Regular.ttf"
+dest_files=["res://.godot/imported/SyneMono-Regular.ttf-fc22fcbc5d67fdab689f5b3ac73d0d63.fontdata"]
 
 [params]
 

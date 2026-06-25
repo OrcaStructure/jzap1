@@ -5,6 +5,7 @@ var conveyer_velocity
 var parcel_mode = "static"
 var bird
 var number
+var debug = false
 var bounce_time = 0
 var fuse = false
 var day
@@ -46,6 +47,8 @@ func _ready() -> void:
 	elif parcel_kind == "black":
 		if number[1] == 0:
 			animater.play("black1")
+		elif number[1]==2:
+			animater.play('black3')
 		else:
 			animater.play("black2")
 	animater.pause()
@@ -61,10 +64,12 @@ func is_off_screen():
 func _input_event(viewport,event, shape):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		print("not grabbing for some reason")
-		if event.pressed:
+		if event.pressed and !game_loop.parcel_dragging:
 			parcel_mode = "dragging"
+			game_loop.parcel_dragging = true
 			mouse_click_position = get_global_mouse_position()
 		else:
+			game_loop.parcel_dragging = false
 			if not mouse_click_position:	
 				mouse_click_position = get_global_mouse_position()
 
@@ -78,6 +83,8 @@ func click_parcel():
 		fuse = false
 		if number[1] == 0:
 			animater.play("black1")
+		elif number[1] == 2:
+			animater.play("black3")
 		else:	
 			animater.play("black2")
 		animater.pause()
@@ -86,6 +93,8 @@ func _physics_process(delta: float) -> void:
 	predestined = true
 	timer += delta
 	
+	if parcel_mode == "done":
+		collision_shape.disabled = true 
 	if is_off_screen() and bounced == false and parcel_mode != "bird" and parcel_mode != "dragging":
 			print('off screen')
 			parcel_mode = "static"
@@ -102,18 +111,22 @@ func _physics_process(delta: float) -> void:
 		print("lit")
 		if number[1] == 0:
 			animater.play("fuse1")
+		elif number[1] == 2:
+			animater.play("fuse3")
 		else:	
 			animater.play("fuse2")
 		fuse = true
 	
 	if fuse:
 		print(animater.frame)
-		if ((number[1] == 0 and animater.frame == 7) or (number[1] == 1 and animater.frame == 9)):
+		if ((number[1] == 0 and animater.frame == 7) or (number[1] == 1 and animater.frame == 9) or (number[1] == 2 and animater.frame == 8)):
 			
 			fuse = false
 			print('boom')
 			if number[1] == 0:
 				animater.play("black1")
+			elif number[1] ==2:
+				animater.play("black3")
 			else:	
 				animater.play("black2")
 			animater.pause()
@@ -132,9 +145,15 @@ func _physics_process(delta: float) -> void:
 		if collision_info:
 			
 			var collider = collision_info.get_collider()
-			
+			print(collider.get_name())
+			print(game_loop.sorted_parcels)
+			if collider.get_name() == "@CharacterBody2D@38":
+				print(collider.collision_shape.disabled)
 			if collider is Spinner:
+				print("on spinner")
 				parcel_mode = "on_spinner"
+				collision_shape.disabled = true
+
 				collider.spin_parcel(self)
 			elif collider is Destination:
 				collider.consume_parcel(self)
@@ -161,6 +180,7 @@ func _physics_process(delta: float) -> void:
 		#var mouse_direction = (get_global_mouse_position()-position).normalized()
 		#position += 3000 * mouse_direction * delta
 	elif parcel_mode == "destination":
+		debug = true
 		if scale.length() > 0.05:
 			destination_node.occupied = true
 			var direction = (destination_target + Vector2(0,-30)-position).normalized()
@@ -176,11 +196,14 @@ func _physics_process(delta: float) -> void:
 		validation_timer += delta
 		if validation_timer > 1:
 			if rejected == true:
+				game_loop.invalid_count += 1
 				rejected = false
 				last_rejected = true
 				destination_node.eject_random_parcels(self)
 			else:
+				collision_shape.disabled = true
 				parcel_mode = "done"
+				print("parcel_mode done",collision_shape.disabled)
 	elif parcel_mode == "bird":
 		if (start_pos+Vector2(0,-20)-position).length() < 20:
 			parcel_mode = "static"

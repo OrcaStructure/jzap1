@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://kmxf2ddwefw1"]
+
+[ext_resource type="Texture2D" uid="uid://dnj7yuecfi5w3" path="res://newpb.png" id="1_u4rot"]
+
+[node name="newpb" type="TextureRect" unique_id=515224289]
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_u4rot")
+expand_mode = 3

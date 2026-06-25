@@ -57,7 +57,7 @@ func _process(delta: float) -> void:
 			var same_distance_perp_destination = same_distance_perp_vector + occupying_parcel.position
 			if (same_distance_perp_destination-destination_vector).length() < 100 * difference_length / 200:
 				if randf_range(0,1) < 0.05:
-					if randf_range(0,1) < 0.3 or occupying_parcel.parcel_kind == "red":			
+					if randf_range(0,1) < 0.35 or occupying_parcel.parcel_kind == "red":			
 						var random_angle = randf_range(0,2 * PI)
 						destination_vector += randi_range(100,200)* Vector2(cos(random_angle),sin(random_angle))
 					occupied = false

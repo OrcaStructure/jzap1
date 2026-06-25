@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bqqapbas1kqlx" path="res://ui/3star.png" id="4_5rk2p"]
 [ext_resource type="Texture2D" uid="uid://hhqaq05acpeq" path="res://ui/stars0-2.png" id="5_cwri2"]
 [ext_resource type="Texture2D" uid="uid://dlihmyh5gblgv" path="res://ui/stars0-3.png" id="6_u2eia"]
-[ext_resource type="FontFile" uid="uid://b02sd6jw14mnb" path="res://fonts/kirifont/KiriFont.ttf" id="7_5rk2p"]
 [ext_resource type="Texture2D" uid="uid://cd3f4mbfgvub1" path="res://ui/readyhover.png" id="9_2va8d"]
+[ext_resource type="FontFile" uid="uid://db38ovuhi5lkk" path="res://fonts/Anton,Chelsea_Market,Syne_Mono/Chelsea_Market/ChelseaMarket-Regular.ttf" id="14_2va8d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_afm0t"]
 animations = [{
@@ -85,7 +85,7 @@ animations = [{
 }]
 
 [sub_resource type="Theme" id="Theme_afm0t"]
-default_font = ExtResource("7_5rk2p")
+default_font = ExtResource("14_2va8d")
 default_font_size = 76
 RichTextLabel/colors/default_color = Color(0.70980394, 0.7411765, 0.5372549, 1)
 
@@ -109,7 +109,8 @@ offset_bottom = -46.0
 mouse_filter = 2
 theme = SubResource("Theme_afm0t")
 bbcode_enabled = true
-text = "[center]{1:23}[/center]"
+text = "[center]1:23[/center]"
+scroll_active = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1773277798]
 z_index = 1

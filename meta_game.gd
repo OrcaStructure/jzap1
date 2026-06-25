@@ -13,6 +13,8 @@ var transition_to
 var game_loop_scene
 var transition_stage = 0
 var transition_data
+var exposition_scene
+var pbs = [1000,1000,1000,1000,1000]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	main_menu_scene = load("res://main_menu.tscn")
@@ -20,6 +22,7 @@ func _ready() -> void:
 	transition_scene = load('res://transition.tscn')
 	post_level_scene = load("res://level_end_ui.tscn")
 	game_loop_scene = load("res://game_loop.tscn")
+	exposition_scene = load("res://exposition.tscn")
 	main_menu = main_menu_scene.instantiate()
 	add_child(main_menu)
 	
@@ -57,6 +60,12 @@ func _process(delta: float) -> void:
 			var level_select = level_select_scene.instantiate()
 			level_select.level_completion = level_completion
 			add_child(level_select)
+		elif transition_to == "exposition":
+			var exposition = exposition_scene.instantiate()
+			exposition.destination_scene = transition_data["scene"]
+			exposition.destination_data = transition_data["data"]
+			exposition.text_number = transition_data["number"]
+			add_child(exposition)
 	if transition_timer > 3:
 		transition_stage = 0
 		transition_timer = 0
