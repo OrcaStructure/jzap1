@@ -4,11 +4,11 @@ var day = 5
 var metagame
 var cutoffs = [
 	[31,27],
-	[55,45],
+	[55,47],
 	[65,55],
-	[82,73],
-	[92,82],
-	[115,100],
+	[80,66],
+	[90,76],
+	[105,90],
 ]
 var time = 450
 # Called when the node enters the scene tree for the first time.
@@ -50,7 +50,7 @@ func _ready() -> void:
 	stars.type = stars_earned
 	stars.day = day
 	replay.button_type = "replay"
-	
+	replay.button_destination = day
 	levels.button_type = "level_select"
 	timer.position = Vector2(550,350)
 	stars.position = Vector2(550,250)

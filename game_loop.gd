@@ -3,6 +3,7 @@ var spinner_scene
 var conveyer_scene
 var parcel_scene
 var metagame
+var any_rejected
 var sort_text
 var invalid_count = 0
 var parcel_dragging
@@ -218,8 +219,13 @@ func _process(delta: float) -> void:
 		if (parcel.position-global_start_pos).length() < 50:
 			parcel_at_spawn = true
 	sort_count.get_node("RichTextLabel").text = "[center]"+	str(total_parcels-done_parcels)+ "[/center]"
-	if done_parcels == total_parcels:
-		win()
+	if done_parcels == total_parcels and day_timer > 5:
+		any_rejected = false
+		for parcel in sorted_parcels:
+			if parcel.rejected:
+				any_rejected = true
+		if !any_rejected:
+			win()
 	if len(parcel_numbers_to_make)>0 and !parcel_at_spawn and !bird_on_the_way and global_start_pos:
 		create_parcel()
 		spawned_parcels += 1

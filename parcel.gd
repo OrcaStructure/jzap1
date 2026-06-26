@@ -133,7 +133,7 @@ func _physics_process(delta: float) -> void:
 			defuse()
 			game_loop.explode()
 			
-			
+
 	if parcel_mode == "conveyer":
 		if first_conveyer:
 			first_conveyer = false
@@ -203,6 +203,7 @@ func _physics_process(delta: float) -> void:
 				game_loop.invalid_count += 1
 				rejected = false
 				last_rejected = true
+				parcel_mode = "preparing_ejection"
 				destination_node.eject_random_parcels(self)
 			else:
 				collision_shape.disabled = true

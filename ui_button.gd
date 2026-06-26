@@ -32,7 +32,7 @@ func _on_input_event(viewport, event, shape_idx):
 			elif button_type == "level_select":
 				metagame.transition(self.get_parent(), "level_select",{})
 			elif button_type == "replay":
-				metagame.transition(self.get_parent(), "game_loop",{"day":button_destination-1})
+				metagame.transition(self.get_parent(), "game_loop",{"day":button_destination})
 			elif button_type == "next_level":
 				metagame.transition(self.get_parent(),"exposition",{"number":button_destination-1,"scene":"game_loop","data":{"day":button_destination}})
 # Called every frame. 'delta' is the elapsed time since the previous frame.

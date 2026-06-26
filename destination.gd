@@ -3,6 +3,7 @@ extends StaticBody2D
 
 var occupied = false
 var game_loop
+var most_recent_parcel
 var timer = 0
 var eject_parcel = []
 var animater
@@ -13,19 +14,23 @@ func _ready() -> void:
 	animater.play("empty")
 func consume_parcel(parcel):
 	parcel.parcel_mode = 'static'
+	most_recent_parcel = parcel
+
 	if parcel.destination_node == self and !parcel.predestined:
 		#print(parcel.last_rejected, "   ", occupied)
 		return
+
 	await animater.animation_looped
 	animater.play("eat")
 	Sfx.play(preload("res://sfx/chomp.wav"),0.01)
+	parcel.rejected = !is_valid(parcel)
 
 	status = "eating"
 	parcel.destination_target = position
 	parcel.parcel_mode = "destination"
 	parcel.destination_node = self
 	parcel.last_rejected = false
-	parcel.rejected = !is_valid(parcel)
+	print("rejected",parcel.rejected)
 	await animater.animation_finished
 	status = "ready_to_idle"
 func is_valid(parcel):
@@ -53,6 +58,10 @@ func eject_random_parcels(caller):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	timer += delta
+	
+	if most_recent_parcel and most_recent_parcel.parcel_mode == "dragging":
+		occupied = false
+	
 	if timer > 1 and status == "underwater":
 		animater.play("enterexit")
 		Sfx.play(preload("res://sfx/splash.wav"))
