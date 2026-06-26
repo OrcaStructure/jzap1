@@ -2,6 +2,14 @@ extends Node2D
 
 var day = 5
 var metagame
+var cutoffs = [
+	[31,27],
+	[55,45],
+	[65,55],
+	[82,73],
+	[92,82],
+	[115,100],
+]
 var time = 450
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,16 +17,24 @@ func _ready() -> void:
 	var timer_scene = load("res://timer.tscn")
 	var replay = button.instantiate()
 	metagame = get_tree().root.get_node("meta_game")
-	
+	var level_completion = metagame.level_completion
 	var pbs = metagame.pbs
 	if len(pbs) >= day:
-		if pbs[day-1] > time:
+		if pbs[day-1] > time and time > 5:
 			new_pb()
 	else:
 		metagame.pbs.append("")
 		new_pb()
-	
-	
+	var stars_earned = 1
+	for cutoff in cutoffs[day-1]:
+		if roundi(time) <= cutoff:
+			stars_earned += 1
+	if len(level_completion) >= day:
+		if level_completion[day-1] < stars_earned and time > 5:
+			metagame.level_completion[day-1]= stars_earned
+	else:
+		level_completion.append(stars_earned)
+	metagame.save_game()
 	if day < 6:
 		var next = button.instantiate()
 		next.button_destination = day + 1
@@ -31,7 +47,7 @@ func _ready() -> void:
 	var levels = button.instantiate()
 	var stars_scene = load("res://level_stars.tscn")
 	var stars = stars_scene.instantiate()
-	stars.type = 3
+	stars.type = stars_earned
 	stars.day = day
 	replay.button_type = "replay"
 	

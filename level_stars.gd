@@ -1,6 +1,7 @@
 extends Area2D
 
 var type
+var played = false
 var day
 var level_select = false
 var text_node
@@ -44,6 +45,9 @@ func _on_mouse_entered():
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if !played:
+				Sfx.play(preload("res://sfx/click.wav"))
+				played = true
 			metagame.transition(self.get_parent(),"exposition",{"number":day-1,"scene":"game_loop","data":{"day":day}})
 
 	
@@ -61,4 +65,6 @@ func _on_mouse_exited():
 func _process(delta: float) -> void:
 	timer += delta
 	if animater.frame < type and timer > float(animater.frame)/2 + 0.5:
+		if !level_select:
+			Sfx.play(preload("res://sfx/star.wav"))
 		animater.frame += 1

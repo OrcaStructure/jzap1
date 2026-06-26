@@ -18,6 +18,8 @@ func consume_parcel(parcel):
 		return
 	await animater.animation_looped
 	animater.play("eat")
+	Sfx.play(preload("res://sfx/chomp.wav"),0.01)
+
 	status = "eating"
 	parcel.destination_target = position
 	parcel.parcel_mode = "destination"
@@ -32,6 +34,8 @@ func is_valid(parcel):
 
 func eject_random_parcels(caller):
 	eject_parcel.append(caller)
+	Sfx.play(preload("res://sfx/invalid.wav"))
+
 	var ejection_number 
 	if game_loop.invalid_count % 4 == 0:
 		ejection_number = 6
@@ -51,6 +55,7 @@ func _process(delta: float) -> void:
 	timer += delta
 	if timer > 1 and status == "underwater":
 		animater.play("enterexit")
+		Sfx.play(preload("res://sfx/splash.wav"))
 		status = "entered"
 		await animater.animation_finished
 		status = "ready_to_idle"
@@ -64,7 +69,7 @@ func _process(delta: float) -> void:
 		await animater.animation_looped
 		animater.play("eat")
 		status = "spitting"
-
+		
 		while len(eject_parcel)>0:
 			var parcel = eject_parcel.pop_front()
 			

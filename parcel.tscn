@@ -255,28 +255,28 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("29_3q68b")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("30_fdbpv")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("31_npfge")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("32_82our")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("33_elq75")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("34_igyha")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("35_kbm0v")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("36_bqgiy")
 }],
 "loop": true,
@@ -284,34 +284,34 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("37_j2jt6")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("38_2bxbk")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("39_8ns3b")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("40_pt1ds")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("41_q1pu4")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("42_cpit7")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("43_kq5p5")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("44_354wi")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("45_44h5i")
 }, {
-"duration": 2.0,
+"duration": 1.7,
 "texture": ExtResource("46_ql76m")
 }],
 "loop": true,
@@ -319,31 +319,31 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 1.5,
 "texture": ExtResource("68_elq75")
 }, {
-"duration": 2.0,
+"duration": 1.5,
 "texture": ExtResource("69_igyha")
 }, {
-"duration": 2.0,
+"duration": 1.5,
 "texture": ExtResource("70_kbm0v")
 }, {
-"duration": 2.0,
+"duration": 1.5,
 "texture": ExtResource("71_bqgiy")
 }, {
-"duration": 2.0,
+"duration": 1.5,
 "texture": ExtResource("72_j2jt6")
 }, {
-"duration": 2.0,
+"duration": 1.5,
 "texture": ExtResource("73_2bxbk")
 }, {
-"duration": 2.0,
+"duration": 1.5,
 "texture": ExtResource("74_8ns3b")
 }, {
-"duration": 2.0,
+"duration": 1.5,
 "texture": ExtResource("75_pt1ds")
 }, {
-"duration": 2.0,
+"duration": 1.5,
 "texture": ExtResource("76_q1pu4")
 }],
 "loop": true,
@@ -376,6 +376,6 @@ shape = SubResource("RectangleShape2D_u4l27")
 position = Vector2(-2, -6)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_usghj")
-animation = &"fuse3"
+animation = &"fuse1"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=93770245]

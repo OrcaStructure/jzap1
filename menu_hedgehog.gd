@@ -78,10 +78,13 @@ func _process(delta: float) -> void:
 					await animater.animation_looped
 					animater.play('default')
 					spin_velocity = 300
+					Sfx.play(preload("res://sfx/throw.mp3"))
 					stuck_on =false
 	if mode == "flying":
 		if (parcel.position - flying_destination).length() < 20: 
 			mode = "default"
+			Sfx.play(preload("res://sfx/thud.wav"))
+
 		else:
 			var flying_bearing = (flying_destination - parcel.position).normalized()
 			parcel.position += delta * flying_bearing*900

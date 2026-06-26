@@ -73,6 +73,9 @@ func add_sorter(start_pos,end_pos,terminal,sorter_day):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var game_controls_scene = load("res://game_controls.tscn")
+	var game_controls = game_controls_scene.instantiate()
+	add_child(game_controls)
 	random_generator = RandomNumberGenerator.new()
 	random_generator2 = RandomNumberGenerator.new()
 	random_generator.seed = day
@@ -144,6 +147,7 @@ func explode():
 	if game_over:
 		return
 	game_over = true
+	Sfx.play(preload("res://sfx/explosion.ogg"))
 
 	var explosion_scene = load("res://explosion.tscn")
 	var explosion = explosion_scene.instantiate()
@@ -157,6 +161,7 @@ func win():
 	game_over = true
 	var win_scene = load("res://sorted.tscn")
 	var sorted = win_scene.instantiate()
+	Sfx.play(preload('res://sfx/win.wav'))
 	sorted.level = day
 	sorted.game_time = day_timer
 	add_child(sorted)
@@ -202,7 +207,7 @@ func _draw():
 func _process(delta: float) -> void:
 	queue_redraw()
 	day_timer += delta
-	
+
 	if game_over:
 		get_node("timer").count_up = false
 	var parcel_at_spawn = false

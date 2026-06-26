@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b86s1pf5lgjjn"]
+
+[ext_resource type="Texture2D" uid="uid://bnwjik6ld3vhr" path="res://game_controls.png" id="1_octub"]
+
+[node name="game_controls" type="TextureRect" unique_id=2049699921]
+offset_left = 907.0
+offset_top = 592.0
+offset_right = 999.0
+offset_bottom = 638.0
+texture = ExtResource("1_octub")
+expand_mode = 1

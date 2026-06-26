@@ -1,10 +1,11 @@
 extends Node2D
-
+var save_path = "user://save.json"
 var main_menu_scene
 var level_select_scene
 var post_level_scene
-var level_completion = [3,2,3,3]
+var level_completion = []
 var transition_scene
+var press_any_key
 var main_menu
 var transition_timer = 0
 var transition_from
@@ -14,21 +15,36 @@ var game_loop_scene
 var transition_stage = 0
 var transition_data
 var exposition_scene
-var pbs = [1000,1000,1000,1000,1000]
+var pbs = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(ProjectSettings.globalize_path("user://"))
+	load_game()
+	var global_controls_scene = load("res://global_controls.tscn")
+	var global_controls = global_controls_scene.instantiate()
+	var press_any_key_scene = load("res://press_key.tscn")
+	add_child(global_controls)
 	main_menu_scene = load("res://main_menu.tscn")
 	level_select_scene =  load("res://level_select.tscn")
 	transition_scene = load('res://transition.tscn')
 	post_level_scene = load("res://level_end_ui.tscn")
 	game_loop_scene = load("res://game_loop.tscn")
 	exposition_scene = load("res://exposition.tscn")
+	press_any_key = press_any_key_scene.instantiate()
+	add_child(press_any_key)
+func create_main_menu():
+	if is_instance_valid(press_any_key):
+		press_any_key.queue_free()
 	main_menu = main_menu_scene.instantiate()
 	add_child(main_menu)
+	Sfx.	music_player.play()
+	Sfx.music_player.seek(5)
 	
 func transition(scene_from, scene_to,data):
 	transition_stage = 0
 	transition_timer = 0
+	if (scene_from.get_name() == "game_loop" and scene_to != "game_loop") or (scene_from.get_name() != "game_loop" and scene_to == "game_loop"):
+		Sfx.on_music_finished() 
 	print("destroy_transition_time")
 	if is_instance_valid(transition_node):
 		transition_node.queue_free()
@@ -38,7 +54,22 @@ func transition(scene_from, scene_to,data):
 	transition_node = transition_scene.instantiate()
 	add_child(transition_node)
 	transition_data = data
-	
+
+func save_game():
+	var save_data = {
+		"pbs": pbs,
+		"level_completion": level_completion
+	}
+	var file := FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_string(JSON.stringify(save_data))
+	file.close()
+
+func load_game():
+	if not FileAccess.file_exists(save_path):
+		return {}
+	var load_data = JSON.parse_string(FileAccess.get_file_as_string(save_path))
+	pbs = load_data["pbs"]
+	level_completion = load_data["level_completion"]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if transition_stage > 0:

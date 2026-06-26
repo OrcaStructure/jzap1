@@ -14,8 +14,6 @@ func _process(delta: float) -> void:
 	timer += delta
 	if timer > 2:
 		timer = -10000
-		if level > len(metagame.level_completion):
-			metagame.level_completion.append(3)
 		if level == 6:
 			metagame.transition(self.get_parent(), "exposition",{"number":6,"scene":"post_level","data":{"day":level,"time":game_time}})
 		else:

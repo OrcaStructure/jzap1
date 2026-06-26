@@ -55,11 +55,11 @@ position = Vector2(1026, 420)
 script = ExtResource("2_u3r3m")
 
 [node name="4-1-start" type="Node2D" parent="level design" unique_id=1353091481]
-position = Vector2(920, 162)
+position = Vector2(966, 137)
 script = ExtResource("2_u3r3m")
 
 [node name="4-1-end" type="Node2D" parent="level design" unique_id=1618944210]
-position = Vector2(684, 195)
+position = Vector2(643, 136)
 script = ExtResource("2_u3r3m")
 
 [node name="4-2-start" type="Node2D" parent="level design" unique_id=228082641]
@@ -67,7 +67,7 @@ position = Vector2(732, 306)
 script = ExtResource("2_u3r3m")
 
 [node name="4-2-end" type="Node2D" parent="level design" unique_id=394926726]
-position = Vector2(533, 450)
+position = Vector2(535, 470)
 script = ExtResource("2_u3r3m")
 
 [node name="5-1-start" type="Node2D" parent="level design" unique_id=1007525957]
@@ -79,11 +79,11 @@ position = Vector2(827, 587)
 script = ExtResource("2_u3r3m")
 
 [node name="5-2-start" type="Node2D" parent="level design" unique_id=129488114]
-position = Vector2(221, 512)
+position = Vector2(216, 560)
 script = ExtResource("2_u3r3m")
 
 [node name="5-2-end" type="Node2D" parent="level design" unique_id=1513564720]
-position = Vector2(108, 587)
+position = Vector2(79, 570)
 script = ExtResource("2_u3r3m")
 
 [node name="5-3-start" type="Node2D" parent="level design" unique_id=1137997157]
@@ -103,7 +103,7 @@ position = Vector2(442, 199)
 script = ExtResource("2_u3r3m")
 
 [node name="6-2-start" type="Node2D" parent="level design" unique_id=658991893]
-position = Vector2(400, 414)
+position = Vector2(361, 414)
 script = ExtResource("2_u3r3m")
 
 [node name="6-2-end" type="Node2D" parent="level design" unique_id=1611758951]
@@ -111,11 +111,11 @@ position = Vector2(192, 419)
 script = ExtResource("2_u3r3m")
 
 [node name="6-3-start" type="Node2D" parent="level design" unique_id=762369751]
-position = Vector2(886, 328)
+position = Vector2(853, 323)
 script = ExtResource("2_u3r3m")
 
 [node name="6-3-end" type="Node2D" parent="level design" unique_id=1634438498]
-position = Vector2(795, 226)
+position = Vector2(832, 179)
 script = ExtResource("2_u3r3m")
 
 [node name="invalid" type="RichTextLabel" parent="." unique_id=20709048]

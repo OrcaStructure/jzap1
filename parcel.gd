@@ -4,6 +4,8 @@ var drag_rotation_velocity = 0
 var conveyer_velocity
 var parcel_mode = "static"
 var bird
+var fuse_id
+var first_conveyer = true
 var number
 var debug = false
 var bounce_time = 0
@@ -63,7 +65,6 @@ func is_off_screen():
 	
 func _input_event(viewport,event, shape):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		print("not grabbing for some reason")
 		if event.pressed and !game_loop.parcel_dragging:
 			parcel_mode = "dragging"
 			game_loop.parcel_dragging = true
@@ -80,20 +81,28 @@ func _input_event(viewport,event, shape):
 
 func click_parcel():
 	if fuse:
-		fuse = false
-		if number[1] == 0:
-			animater.play("black1")
-		elif number[1] == 2:
-			animater.play("black3")
-		else:	
-			animater.play("black2")
-		animater.pause()
+		defuse()
+
+func defuse():
+	fuse = false
+	if fuse_id != AudioStreamPlaybackPolyphonic.INVALID_ID:
+		Sfx.playback.stop_stream(fuse_id)
+
+	if number[1] == 0:
+		animater.play("black1")
+	elif number[1] == 2:
+		animater.play("black3")
+	else:	
+		animater.play("black2")
+	animater.pause()
 
 func _physics_process(delta: float) -> void:
 	predestined = true
 	timer += delta
 	
 	if parcel_mode == "done":
+		if fuse:
+			defuse()
 		collision_shape.disabled = true 
 	if is_off_screen() and bounced == false and parcel_mode != "bird" and parcel_mode != "dragging":
 			print('off screen')
@@ -107,8 +116,10 @@ func _physics_process(delta: float) -> void:
 			#bounced = true
 			#bounce_time = timer
 	
-	if parcel_mode != "bird" and parcel_mode != "validating" and parcel_mode != "done" and parcel_kind == "black" and randf() < 0.001:
+	if parcel_mode != "bird" and parcel_mode != "validating" and parcel_mode != "done" and parcel_kind == "black" and randf() < 0.001 and parcel_mode != "flung" and parcel_mode != "on_spinner":
 		print("lit")
+		fuse_id = Sfx.play(preload("res://sfx/fuse.wav"))
+	
 		if number[1] == 0:
 			animater.play("fuse1")
 		elif number[1] == 2:
@@ -118,22 +129,14 @@ func _physics_process(delta: float) -> void:
 		fuse = true
 	
 	if fuse:
-		print(animater.frame)
 		if ((number[1] == 0 and animater.frame == 7) or (number[1] == 1 and animater.frame == 9) or (number[1] == 2 and animater.frame == 8)):
-			
-			fuse = false
-			print('boom')
-			if number[1] == 0:
-				animater.play("black1")
-			elif number[1] ==2:
-				animater.play("black3")
-			else:	
-				animater.play("black2")
-			animater.pause()
+			defuse()
 			game_loop.explode()
 			
 			
 	if parcel_mode == "conveyer":
+		if first_conveyer:
+			first_conveyer = false
 		var random_threshold = 0.01
 		if parcel_kind == "blue" and ((randf() < random_threshold and day > 1) or (day ==1 and position.x > 150 and position.x < 180)):
 			parcel_mode = "crouch"
@@ -145,17 +148,15 @@ func _physics_process(delta: float) -> void:
 		if collision_info:
 			
 			var collider = collision_info.get_collider()
-			print(collider.get_name())
-			print(game_loop.sorted_parcels)
-			if collider.get_name() == "@CharacterBody2D@38":
-				print(collider.collision_shape.disabled)
 			if collider is Spinner:
-				print("on spinner")
 				parcel_mode = "on_spinner"
 				collision_shape.disabled = true
-
+				if fuse:
+					defuse()
 				collider.spin_parcel(self)
 			elif collider is Destination:
+				if fuse:
+					defuse()
 				collider.consume_parcel(self)
 			
 	elif parcel_mode == "flung":
@@ -166,6 +167,7 @@ func _physics_process(delta: float) -> void:
 		
 		if (position - flung_destination).length() < 10:
 			parcel_mode = "static"
+			Sfx.play(preload("res://sfx/thud.wav"),0.2)
 			collision_shape.disabled = false
 			bounced = false
 		flung_direction = 750 * (flung_destination - position).normalized()
@@ -193,6 +195,8 @@ func _physics_process(delta: float) -> void:
 				destination_node.game_loop.get_node("invalid").show_text()
 			
 	elif parcel_mode == "validating":
+		if fuse:
+			defuse()
 		validation_timer += delta
 		if validation_timer > 1:
 			if rejected == true:
@@ -203,12 +207,12 @@ func _physics_process(delta: float) -> void:
 			else:
 				collision_shape.disabled = true
 				parcel_mode = "done"
-				print("parcel_mode done",collision_shape.disabled)
 	elif parcel_mode == "bird":
 		if (start_pos+Vector2(0,-20)-position).length() < 20:
 			parcel_mode = "static"
 			collision_shape.disabled = false
 			bird.game.bird_on_the_way = false
+			Sfx.play(preload("res://sfx/thud.wav"),0.05)
 
 		else:
 			position = bird.position + Vector2(0,30)
@@ -217,6 +221,8 @@ func _physics_process(delta: float) -> void:
 		scale.y *= 0.99
 		if timer > crouch_time + 0.5:
 			scale.y =1
+			Sfx.play(preload("res://sfx/bounce.wav"))
+
 			fling_self()
 func fling_self():
 	if timer < bounce_time + 3:

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cubkca2mag3m2"]
+
+[ext_resource type="Texture2D" uid="uid://5esytahnnerm" path="res://global_controls.png" id="1_sq881"]
+
+[node name="global_controls" type="TextureRect" unique_id=459339235]
+offset_left = 1055.0
+offset_top = 590.0
+offset_right = 1145.0
+offset_bottom = 635.0
+texture = ExtResource("1_sq881")
+expand_mode = 1
